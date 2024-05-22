@@ -1,5 +1,5 @@
 window.CONFIG = {
-  crawl: `Thanks to all the contributors of this project. While it's not completely finished, the community effort has made this possible. Stars, contributions, and feedback are welcome and appreciated. Thanks for trying out this emulator.`,
+  crawl: `KAOS MODDING TEAM`,
   greeting: 'This is your weather',
   language: 'en-US', // Supported in TWC API
   countryCode: 'US', // Supported in TWC API (for postal key)
@@ -12,7 +12,6 @@ window.CONFIG = {
     // twcAPIKey: 'd522aa97197fd864d36b418f39ebb323'
     //twcAPIKey: '21d8a80b3d6b444998a80b3d6b1449d3'
     twcAPIKey: 'e1f10a1e78da46f5b10a1e78da96f525'
-
   },
 
   // Config Functions (index.html settings manager)
@@ -34,40 +33,54 @@ window.CONFIG = {
   },
   submit: (btn, e) => {
     let args = {}
+    const currentLoop = (localStorage.getItem('loop') === 'y')
     CONFIG.locationOptions.forEach((opt) => {
       args[opt.id] = getElement(`${opt.id}-text`).value
       args[`${opt.id}-button`] = getElement(`${opt.id}-button`).checked
-      localStorage.setItem(opt.id, args[opt.id])
+      if (!currentLoop) {
+        localStorage.setItem(opt.id, args[opt.id])
+      }
     })
     args['countryCode'] = getElement('country-code-text').value
+    if (!currentLoop) {
+      localStorage.setItem('countryCode', args['countryCode'])
+    }
     CONFIG.options.forEach((opt) => {
       args[opt.id] = getElement(`${opt.id}-text`).value
-      localStorage.setItem(opt.id, args[opt.id])
+      if (!currentLoop) {
+        localStorage.setItem(opt.id, args[opt.id])
+      }
     })
     console.log(args)
-    if (args.crawlText !== '') CONFIG.crawl = args.crawlText
-    if (args.greetingText !== '') CONFIG.greeting = args.greetingText
-    if(args.countryCode !== '') CONFIG.countryCode = args.countryCode
-    if (args.loop === 'y') CONFIG.loop = true
+    if (currentLoop) {
+      if (localStorage.getItem('crawlText')) CONFIG.crawl = localStorage.getItem('crawlText')
+      if (localStorage.getItem('greetingText')) CONFIG.greeting = localStorage.getItem('greetingText')
+      if (localStorage.getItem('countryCode')) CONFIG.countryCode = localStorage.getItem('countryCode')
+    } else {
+      if (args.crawlText !== '') CONFIG.crawl = args.crawlText
+      if (args.greetingText !== '') CONFIG.greeting = args.greetingText
+      if (args.countryCode !== '') CONFIG.countryCode = args.countryCode
+      if (args.loop === 'y') CONFIG.loop = true
+    }
     
     if (args['airport-code-button']==true){ 
       CONFIG.locationMode="AIRPORT" 
       if(args['airport-code'].length==0){
         alert("Please enter an airport code")
-        return;
+        return
       }
     } 
     else { 
       CONFIG.locationMode="POSTAL" 
-      if(args['zip-code'].length==0){
+      if(!currentLoop && args['zip-code'].length==0){
         alert("Please enter a postal code")
-        return;
+        return
       }
 
     }
     
-    zipCode = args['zip-code'];
-    airportCode = args['airport-code'];
+    zipCode = args['zip-code'] || localStorage.getItem('zip-code')
+    airportCode = args['airport-code'] || localStorage.getItem('airport-code')
     
     CONFIG.unitField = CONFIG.units === 'm' ? 'metric' : (CONFIG.units === 'h' ? 'uk_hybrid' : 'imperial')
     fetchCurrentWeather();
