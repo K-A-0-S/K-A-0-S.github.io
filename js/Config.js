@@ -1,5 +1,5 @@
 window.CONFIG = {
-  crawl: `☁ Welcome to KAOS!!!.... The Intellistar Emulator for Fire TV. ☁`,
+  crawl: `☁ Welcome to KAOS!!!.... The Intellistar Emulator. ☁`,
   greeting: 'This is your weather',
   language: 'en-US', // Supported in TWC API
   countryCode: 'US', // Supported in TWC API (for postal key)
