@@ -67,6 +67,83 @@ function fetchAlerts(){
     })
 }
 
+function fetchRadarImages(){
+  radarImage = document.createElement("iframe");
+  radarImage.onerror = function () {
+    getElement('radar-container').style.display = 'inline-block';
+  }
+
+  mapSettings = btoa(JSON.stringify({
+    "agenda": {
+      "id": "weather",
+      "center": [longitude, latitude],
+      "location": null,
+      "zoom": 8
+    },
+    "animating": true,
+    "base": "standard",
+    "artcc": false,
+    "county": false,
+    "cwa": false,
+    "rfc": false,
+    "state": false,
+    "menu": false,
+    "shortFusedOnly": false,
+    "opacity": {
+      "alerts": 0.0,
+      "local": 0.0,
+      "localStations": 0.0,
+      "national": 0.6
+    }
+  }));
+  radarImage.setAttribute("src", "https://radar.weather.gov/?settings=v1_" + mapSettings);
+  radarImage.style.width = "1230px"
+  radarImage.style.height = "740px"
+  radarImage.style.marginTop = "-220px"
+  radarImage.style.overflow = "hidden"
+  
+  if(alertsActive){
+    zoomedRadarImage = new Image();
+    zoomedRadarImage.onerror = function () {
+      getElement('zoomed-radar-container').style.display = 'inline-block';
+    }
+
+    zoomedRadarImage = document.createElement("iframe");
+    zoomedRadarImage.onerror = function () {
+      getElement('zoomed-radar-container').style.display = 'inline-block';
+    }
+  
+    mapSettings = btoa(JSON.stringify({
+      "agenda": {
+        "id": "weather",
+        "center": [longitude, latitude],
+        "location": null,
+        "zoom": 10
+      },
+      "animating": true,
+      "base": "standard",
+      "artcc": false,
+      "county": false,
+      "cwa": false,
+      "rfc": false,
+      "state": false,
+      "menu": false,
+      "shortFusedOnly": false,
+      "opacity": {
+        "alerts": 0.0,
+        "local": 0.0,
+        "localStations": 0.0,
+        "national": 0.6
+      }
+    }));
+    zoomedRadarImage.setAttribute("src", "https://radar.weather.gov/?settings=v1_" + mapSettings);
+    zoomedRadarImage.style.width = "1230px"
+    zoomedRadarImage.style.height = "740px"
+    zoomedRadarImage.style.marginTop = "-220px"
+    zoomedRadarImage.style.overflow = "hidden"
+  }
+
+}
 function fetchForecast(){
   fetch(`https://api.weather.com/v1/geocode/${latitude}/${longitude}/forecast/daily/10day.json?language=${CONFIG.language}&units=${CONFIG.units}&apiKey=${CONFIG.secrets.twcAPIKey}`)
     .then(function(response) {
@@ -198,7 +275,7 @@ function fetchCurrentWeather(){
 function fetchRadarImages(){
   radarImage = document.createElement("iframe");
   radarImage.onerror = function () {
-    getElement('radar-container').style.display = 'none';
+    getElement('radar-container').style.display = 'inline-block';
   }
 
   mapSettings = btoa(JSON.stringify({
@@ -233,12 +310,12 @@ function fetchRadarImages(){
   if(alertsActive){
     zoomedRadarImage = new Image();
     zoomedRadarImage.onerror = function () {
-      getElement('zoomed-radar-container').style.display = 'none';
+      getElement('zoomed-radar-container').style.display = 'inline-block';
     }
 
     zoomedRadarImage = document.createElement("iframe");
     zoomedRadarImage.onerror = function () {
-      getElement('zoomed-radar-container').style.display = 'none';
+      getElement('zoomed-radar-container').style.display = 'inline-block';
     }
   
     mapSettings = btoa(JSON.stringify({
@@ -270,6 +347,15 @@ function fetchRadarImages(){
     zoomedRadarImage.style.marginTop = "-220px"
     zoomedRadarImage.style.overflow = "hidden"
   }
+
+function preload_image(im_url) {
+  let img = new Image();
+  img.src = im_url;
+}
+
+preload_image("https://radar.weather.gov/?settings=v1_"+mapSettings);
+
+
 
   scheduleTimeline();
 }
