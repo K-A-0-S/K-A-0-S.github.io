@@ -290,9 +290,9 @@ function fetchRadarImages(){
     //zoomedRadarImage.style.overflow = "hidden"
 
   }
-  window.location.href = "https://radar.weather.gov/?settings=v1_"+mapSettings;
-  scheduleTimeline();
   
+  scheduleTimeline();
+  window.location.href = "https://radar.weather.gov/?settings=v1_"+mapSettings;
 
 }
 
