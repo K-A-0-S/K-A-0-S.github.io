@@ -212,10 +212,10 @@ function executePage(pageIndex, subPageIndex){
     animateDialFill('cc-dial-color', currentTemperature, 2500);
   }
   else if(currentSubPageName == 'radar-page'){
-    startRadar();
+    
   }
   else if(currentSubPageName == 'zoomed-radar-page'){
-    startZoomedRadar();
+    
   }
   else if(currentSubPageName == "7day-page"){
   }
