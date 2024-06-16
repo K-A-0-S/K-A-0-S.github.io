@@ -248,7 +248,7 @@ function fetchRadarImages(){
         "location": null,
         "zoom": 10
       },
-      "animating": true,
+      "animating": false,
       "base": "standard",
       "artcc": false,
       "county": false,
