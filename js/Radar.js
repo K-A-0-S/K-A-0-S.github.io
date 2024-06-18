@@ -206,7 +206,7 @@ function fetchRadarImages(){
       "id": "weather",
       "center": [longitude, latitude],
       "location": null,
-      "zoom": 8
+      "zoom": 5
     },
     "animating": true,
     "base": "standard",
@@ -218,7 +218,7 @@ function fetchRadarImages(){
     "menu": false,
     "shortFusedOnly": false,
     "opacity": {
-      "alerts": 0.0,
+      "alerts": 0.6,
       "local": 0.0,
       "localStations": 0.0,
       "national": 0.6
