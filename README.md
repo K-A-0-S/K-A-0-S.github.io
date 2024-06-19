@@ -5,7 +5,7 @@ A web application that displays weather information in the same visual presentat
 This is a local forecast segment that airs on The Weather Channel called the "Local on the 8s". The forecast is approximately a minute long and provides information on current and forecasted weather conditions. This type of forecast started in 1982 using WeatherStar units. It was later upgraded to Intellistar in 2003 and received various graphic changes over the years. This emulator uses the style that started in 2013.
 
 ## Instructions
-1. Visit: <https://kaosfactor.github.io/>.
+1. Visit: <https://k-a-0-s.github.io/>.
 2. Enter zip code
 3. Click start
 4. Press F11 for fullscreen
