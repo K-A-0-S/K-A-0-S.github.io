@@ -206,7 +206,7 @@ function fetchRadarImages(){
       "id": "weather",
       "center": [longitude, latitude],
       "location": null,
-      "zoom": 8
+      "zoom": 10
     },
     "animating": true,
     "base": "standard",
