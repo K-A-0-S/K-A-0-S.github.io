@@ -268,7 +268,7 @@ function fetchRadarImages(){
       "menu": false,
       "shortFusedOnly": false,
       "opacity": {
-        "alerts": 0.1,
+        "alerts": 0.0,
         "local": 0.0,
         "localStations": 0.0,
         "national": 0.6
