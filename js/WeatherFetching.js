@@ -206,7 +206,7 @@ function fetchRadarImages(){
       "id": "weather",
       "center": [longitude, latitude],
       "location": null,
-      "zoom": 8
+      "zoom": 7
     },
     "animating": true,
     "base": "standard",
@@ -218,10 +218,10 @@ function fetchRadarImages(){
     "menu": false,
     "shortFusedOnly": false,
     "opacity": {
-      "alerts": 0.0,
+      "alerts": 0.4,
       "local": 0.0,
       "localStations": 0.0,
-      "national": 0.6
+      "national": 0.9
     }
   }));
   radarImage.setAttribute("src", "https://radar.weather.gov/?settings=v1_" + mapSettings);
@@ -258,10 +258,10 @@ function fetchRadarImages(){
       "menu": false,
       "shortFusedOnly": false,
       "opacity": {
-        "alerts": 0.0,
+        "alerts": 0.4,
         "local": 0.0,
         "localStations": 0.0,
-        "national": 0.6
+        "national": 0.9
       }
     }));
     zoomedRadarImage.setAttribute("src", "https://radar.weather.gov/?settings=v1_" + mapSettings);
