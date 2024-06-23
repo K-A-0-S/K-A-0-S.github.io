@@ -296,4 +296,5 @@ function fetchRadarImages(){
 
 }
 
-
+    localStorage.setItem('loop', 'n');
+    CONFIG.loop = false;
