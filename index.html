@@ -39,15 +39,34 @@
   <title>IntelliSTAR Emulator</title>
 </head>
 
+<script>
+    localStorage.setItem('loop', 'n');
+    CONFIG.loop = false;
+</script>
+
+<script>
+function nws() {
+
+  localStorage.setItem('loop', 'y');
+  CONFIG.loop = true;
+  location.href = "https://localhost:4001/georadar.html";
+}
+</script>
+
+
 <body>
+
   <div id="render-frame">
+
     <!--Nature Background image-->
-    <div id="background-image" class="below-screen" onclick='window.location.href="https://k-a-0-s.github.io/nwsradar.html"'>
+
+    <div id="background-image" class="below-screen" onclick="nws();" >  
+
+
 	  <div id="contentframe" style="position:relative; top: 300px; left: 1460px;">
-       <iframe id="iframe" src="https://k-a-0-s.github.io/images/amwx.png" width="375" height="340" frameBorder="0"></iframe>
+       <iframe id="iframe" src="https://kaosfactor.github.io/images/amwx.png" width="375" height="340" frameBorder="0"></iframe>
       </div>
     </div>
-	
 
     <!-- Top Information Bar -->
     <div id="infobar-container">
@@ -428,7 +447,7 @@
             </td>
             <td>
               <input type="text" id="zip-code-text" style="font-size: 20px; width:100px" 
-              placeholder="00000" value="20003" class="settings-item settings-text settings-input"/>
+              placeholder="00000" class="settings-item settings-text settings-input"/>
             </td>
             <td>
               <input type="text" id="country-code-text" style="font-size: 20px; width:50px;" 
@@ -445,5 +464,6 @@
   </div>
 
 </body>
+
 
 </html>
