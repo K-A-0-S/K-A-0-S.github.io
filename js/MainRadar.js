@@ -569,5 +569,3 @@ function alert(message){
   getElement('alert-message').classList.add('shown');
   setTimeout(hideAlertMessage, 2000);
 }
-    localStorage.setItem('loop', 'y');
-    CONFIG.loop = true;

@@ -195,6 +195,11 @@ function fetchCurrentWeather(){
 
 }
 
+function URL() {
+    location.href = "https://radar.weather.gov/?settings=v1_"+mapSettings;
+
+}
+
 function fetchRadarImages(){
   radarImage = document.createElement("iframe");
   radarImage.onerror = function () {
@@ -274,4 +279,6 @@ function fetchRadarImages(){
   scheduleTimeline();
   startRadar();
   startZoomedRadar();
+
 }
+

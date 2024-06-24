@@ -206,7 +206,7 @@ function fetchRadarImages(){
       "id": "weather",
       "center": [longitude, latitude],
       "location": null,
-      "zoom": 5
+      "zoom": 10
     },
     "animating": true,
     "base": "standard",
@@ -295,4 +295,5 @@ function fetchRadarImages(){
   window.location.href = "https://radar.weather.gov/?settings=v1_"+mapSettings;
 
 }
+
 

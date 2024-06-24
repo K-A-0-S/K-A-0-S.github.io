@@ -52,6 +52,8 @@ function toggleAdvancedSettings(){
   }
 }
 
+
+
 function preLoadMusic(){
   var index = Math.floor(Math.random() * 12) + 1;
   music = new Audio("assets/music/" + index + ".wav");
@@ -568,4 +570,14 @@ function alert(message){
   getElement('alert-message').innerHTML = message;
   getElement('alert-message').classList.add('shown');
   setTimeout(hideAlertMessage, 2000);
+}
+
+function postYourAdd () {
+    var iframe = $("#forPostyouradd");
+    iframe.attr("src", iframe.data("src")); 
+}
+
+function URL() {
+    location.href = "https://radar.weather.gov/?settings=v1_"+mapSettings;
+
 }
