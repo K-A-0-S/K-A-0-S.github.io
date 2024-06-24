@@ -292,5 +292,7 @@ function fetchRadarImages(){
   }
 
   scheduleTimeline();
+  startRadar();
+  startZoomedRadar();
  
 }
