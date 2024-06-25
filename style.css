@@ -1,11 +1,15 @@
-
-
-
-
 .box {
   margin-left: -10px;
   margin-top: -420px;
   width: 800px;
   height: 1200px;
   overflow: hidden;
+}
+
+input[type='button']{
+position: absolute;
+    right:10px;
+    z-index:1000;
+    float: right;
+    top: 5px;
 }
