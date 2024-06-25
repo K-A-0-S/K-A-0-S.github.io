@@ -8,7 +8,7 @@
 
 input[type='button']{
 position: absolute;
-    right:10px;
+    left:10px;
     z-index:1000;
     float: right;
     top: 5px;
