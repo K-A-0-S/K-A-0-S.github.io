@@ -39,10 +39,7 @@
   <title>IntelliSTAR Emulator</title>
 </head>
 
-<script>
-    localStorage.setItem('loop', 'n');
-    CONFIG.loop = false;
-</script>
+
 
 <script>
 function nws() {
@@ -60,7 +57,7 @@ function nws() {
 
     <!--Nature Background image-->
 
-    <div id="background-image" class="below-screen" onclick="nws();" >  
+    <div id="background-image" class="below-screen">  
 
 
 	  <div id="contentframe" style="position:relative; top: 300px; left: 1460px;">
@@ -71,8 +68,8 @@ function nws() {
     <!-- Top Information Bar -->
     <div id="infobar-container">
       <img id="infobar-twc-logo" src="assets/logos/twc.svg" onclick="twcLogoClick();" />
-      <img id="infobar-local-logo" src="assets/logos/local.svg" />
-      <div id="infobar-location-container" class="infobar-item-container">
+      <img id="infobar-local-logo" src="assets/logos/local.svg" onclick="twcLogoClick();" />
+      <div id="infobar-location-container" class="infobar-item-container" onclick="nws();" >
         <div id="infobar-location-text" class="regular-text infobar-text"></div>
       </div>
       <div id="infobar-time-container" class="infobar-item-container">
@@ -398,13 +395,13 @@ function nws() {
     <!-- Timeline Container -->
     <div id="timeline-container">
       <!-- Current Logo -->
-      <div id="timeline-logo-container">
+      <div id="timeline-logo-container" onClick="window.location.reload();">
         <div id="logo-stack"></div>
       </div>
 
       <!-- Timeline -->
       <div id="timeline">
-        <div id="timeline-event-container"></div>
+        <div id="timeline-event-container" onClick="window.location.reload();"></div>
         <div style="height: 15%;">
           <div class="progress-container" style="width: 280px;">
             <div id="progressbar-container" class="timeline-bar">
@@ -447,7 +444,7 @@ function nws() {
             </td>
             <td>
               <input type="text" id="zip-code-text" style="font-size: 20px; width:100px" 
-              placeholder="00000" class="settings-item settings-text settings-input"/>
+              placeholder="00000" value="21123" class="settings-item settings-text settings-input"/>
             </td>
             <td>
               <input type="text" id="country-code-text" style="font-size: 20px; width:50px;" 
