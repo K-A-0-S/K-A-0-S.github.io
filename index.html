@@ -50,7 +50,17 @@ function nws() {
 }
 </script>
 
+<script>
+function intellistar() {
 
+  localStorage.setItem('loop', 'n');
+  CONFIG.loop = false;
+
+  window.location.reload();
+}
+</script>
+
+	
 <body>
 
   <div id="render-frame">
@@ -395,13 +405,13 @@ function nws() {
     <!-- Timeline Container -->
     <div id="timeline-container">
       <!-- Current Logo -->
-      <div id="timeline-logo-container" onClick="window.location.reload();">
+      <div id="timeline-logo-container" onclick="intellistar();">
         <div id="logo-stack"></div>
       </div>
 
       <!-- Timeline -->
       <div id="timeline">
-        <div id="timeline-event-container" onClick="window.location.reload();"></div>
+        <div id="timeline-event-container" onclick="intellistar();"></div>
         <div style="height: 15%;">
           <div class="progress-container" style="width: 280px;">
             <div id="progressbar-container" class="timeline-bar">
