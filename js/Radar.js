@@ -291,7 +291,7 @@ function fetchRadarImages(){
 
   }
 
-  scheduleTimeline();
+
   window.location.href = "https://radar.weather.gov/?settings=v1_"+mapSettings;
 
 }
