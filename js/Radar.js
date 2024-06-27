@@ -225,7 +225,7 @@ function fetchRadarImages(){
     }
   }));
   
-  radarImage.setAttribute("src", "https://radar.weather.gov/?settings=v1_" + mapSettings);
+  radarImage.setAttribute("src", "https://kaosfactor.github.io/radar/radar.html);
   radarImage.style.width = "1239px"
   radarImage.style.height = "1200px"
   radarImage.style.marginTop = "-670px"
