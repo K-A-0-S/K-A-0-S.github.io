@@ -29,9 +29,9 @@
 
 input[type='button']{
 position: absolute;
-    left:13px;
+    right:13px;
     z-index:1000;
     float: right;
-    top: 5px;
+    top: 10px;
 }
 
