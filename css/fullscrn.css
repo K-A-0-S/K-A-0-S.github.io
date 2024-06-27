@@ -1,0 +1,37 @@
+
+
+.box {
+ 
+
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Safari */
+  -khtml-user-select: none; /* Konqueror HTML */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none; /* Non-prefixed version, currentlyz*/
+  overflow: hidden;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  margin-left: -960px;
+  margin-top: -600px;
+  width: 2100px;
+  height: 1150px;
+  overflow: hidden;
+  transform-origin: 50% 50%;
+  background: #1b2b4b; /* Old browsers */
+  background: linear-gradient(to bottom, #1b2b4b 0%,#8ba5c3 100%);
+
+
+
+}
+
+
+input[type='button']{
+position: absolute;
+    left:10px;
+    z-index:1000;
+    float: right;
+    top: 5px;
+}
+
