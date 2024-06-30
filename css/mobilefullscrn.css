@@ -7,10 +7,45 @@
   overflow: hidden;
 }
 
-input[type='button']{
-position: absolute;
-    left:10px;
-    z-index:1000;
-    float: right;
-    top: 5px;
-}
+
+
+   .button {
+        background-color: #000000;
+        color: #FFFFFF;
+        padding: 1px;
+        border-radius: 10px;
+        -moz-border-radius: 10px;
+        -webkit-border-radius: 10px;
+        margin:0px
+        font-size: 8px;
+        position: absolute;
+        right:13px;
+        z-index:1000;
+        float: right;
+        top: 10px;
+        font-size: 10px;
+        width: 60px;
+
+
+
+    }
+
+
+   .button2 {
+        background-color: #000000;
+        color: #FFFFFF;
+        padding: 1px;
+        border-radius: 10px;
+        -moz-border-radius: 10px;
+        -webkit-border-radius: 10px;
+        margin:0px
+        font-size: 8px;
+        position: absolute;
+        right:13px;
+        z-index:1000;
+        float: right;
+        top: 30px;
+        font-size: 10px;
+        width: 60px;
+
+    }
