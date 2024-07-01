@@ -39,6 +39,15 @@
   <title>IntelliSTAR Emulator</title>
 </head>
 
+<script>
+function radarfull() {
+
+  localStorage.setItem('loop', 'y');
+  CONFIG.loop = true;
+  location.href = "https://K-A-0-S.github.io/radar/radarfull.html";
+}
+
+</script>
 
 
 <script>
@@ -48,6 +57,7 @@ function nws() {
   CONFIG.loop = true;
   location.href = "https://K-A-0-S.github.io/georadar1.html";
 }
+
 </script>
 
 <script>
@@ -231,12 +241,12 @@ function intellistar() {
       </div>
 
       <!-- Radar Page -->
-      <div id="radar-page" class="page-container regular-page-container">
+      <div id="radar-page" class="page-container regular-page-container" onclick="radarfull();">
         <div class="page-title-bar regular-text">
           <div style="display: inline-block">Regional Radar</div>
         </div>
         <div class="page-content-container">
-          <div id="radar-container" class="radar-container" style="position: absolute;">
+          <div id="radar-container" class="radar-container" style="position: absolute;">     
           </div>
         </div>
       </div>
