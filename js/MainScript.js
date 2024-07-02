@@ -119,7 +119,7 @@ function startAnimation(){
 
 //function startMusic(){
   //music.play();
-}
+//}
 
 function hideSettings(){
   // Animate settings prompt out
