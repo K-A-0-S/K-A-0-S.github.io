@@ -225,7 +225,7 @@ function fetchRadarImages(){
       "national": 0.9
     }
   }));
-  radarImage.setAttribute("src", "https://k-a-0-s.github.io/radar/radar.html");
+  radarImage.setAttribute("src", "https://k-a-0-s.github.io/radar/radar3.html");
   radarImage.style.width = "1239px"
   radarImage.style.height = "1000px"
   radarImage.style.marginTop = "-670px"
