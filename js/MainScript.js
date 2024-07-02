@@ -117,9 +117,9 @@ function startAnimation(){
   executeGreetingPage();
 }
 
-//function startMusic(){
-  //music.play();
-//}
+function startMusic(){
+  music.play();
+}
 
 function hideSettings(){
   // Animate settings prompt out
