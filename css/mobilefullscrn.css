@@ -12,7 +12,6 @@
 
 
 
-
    .button {
         display: inline-block;
 
@@ -31,9 +30,9 @@
 
         font-size: 8px;
         position: absolute;
-        right:13px;
+        left:13px;
         z-index:1000;
-        float: right;
+        float: left;
         top: 10px;
         font-size: 10px;
         width: 60px;
