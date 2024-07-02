@@ -38,26 +38,59 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   <title>IntelliSTAR Emulator</title>
 </head>
+	
+<script>
+function radarfull() {
+
+  localStorage.setItem('loop', 'y');
+  CONFIG.loop = true;
+  location.href = "https://K-A-0-S.github.io/lowrez.html";
+}
+
+</script>
+
+
+<script>
+function nws() {
+
+  localStorage.setItem('loop', 'y');
+  CONFIG.loop = true;
+  location.href = "https://K-A-0-S.github.io/georadar1.html";
+}
+
+</script>
+
+<script>
+function intellistar() {
+
+  localStorage.setItem('loop', 'n');
+  CONFIG.loop = false;
+
+  window.location.reload();
+}
+</script>
+
 
 <body>
   <div id="render-frame">
     <!--Nature Background image-->
     <div id="background-image" class="below-screen">
 	  <div id="contentframe" style="position:relative; top: 300px; left: 1460px;">
-       <iframe id="iframe" src="https://k-a-0-s.github.io/images/amwx.png" width="375" height="340" frameBorder="0"></iframe>
+       <iframe id="iframe" src="amwx.html" allowtransparency="true" width="375" height="340" frameBorder="0"></iframe>
       </div>
-	</div>
+    </div>
+
 	
 
     <!-- Top Information Bar -->
     <div id="infobar-container">
       <img id="infobar-twc-logo" src="assets/logos/twc.svg" onclick="twcLogoClick();" />
-      <img id="infobar-local-logo" src="assets/logos/local.svg" />
-      <div id="infobar-location-container" class="infobar-item-container">
+      <img id="infobar-local-logo" src="assets/logos/local.svg" onclick="twcLogoClick();" />
+      <div id="infobar-location-container" class="infobar-item-container" onclick="nws();" >
         <div id="infobar-location-text" class="regular-text infobar-text"></div>
       </div>
       <div id="infobar-time-container" class="infobar-item-container">
-        <div id="infobar-time-text" class="regular-text infobar-text"></div>
+        <div id="infobar-time-text" class="regular-text infobar-text" onclick="window.location.reload();"></div>
       </div>
     </div>
 
@@ -379,13 +412,13 @@
     <!-- Timeline Container -->
     <div id="timeline-container">
       <!-- Current Logo -->
-      <div id="timeline-logo-container">
+      <div id="timeline-logo-container" onclick="intellistar();"">
         <div id="logo-stack"></div>
       </div>
 
       <!-- Timeline -->
       <div id="timeline">
-        <div id="timeline-event-container"></div>
+        <div id="timeline-event-container" onclick="intellistar();"></div>
         <div style="height: 15%;">
           <div class="progress-container" style="width: 280px;">
             <div id="progressbar-container" class="timeline-bar">
