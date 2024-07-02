@@ -118,7 +118,7 @@ function startAnimation(){
 }
 
 function startMusic(){
-  music.play();
+  //music.play();
 }
 
 function hideSettings(){
