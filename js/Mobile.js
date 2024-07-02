@@ -227,8 +227,8 @@ function fetchRadarImages(){
   }));
   radarImage.setAttribute("src", "https://k-a-0-s.github.io/radar/radar3.html");
   radarImage.style.width = "1239px"
-  radarImage.style.height = "900px"
-  radarImage.style.marginTop = "-70px"
+  radarImage.style.height = "600px"
+  radarImage.style.marginTop = "0px"
   radarImage.style.overflow = "hidden"
   
   if(alertsActive){
