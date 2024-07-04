@@ -10,3 +10,48 @@
 
 
 
+   .button {
+        background-color: #000000;
+        color: #FFFFFF;
+        padding: 1px;
+        border-radius: 10px;
+        -moz-border-radius: 10px;
+        -webkit-border-radius: 10px;
+        margin:0px
+        font-size: 8px;
+        position: absolute;
+        left:21px;
+        z-index:1000;
+        float: left;
+        top: 475px;
+        font-size: 10px;
+        width: 60px;
+
+
+
+    }
+
+
+.button2 {
+  border-color: #3498db;
+  color: #ffffff;
+  box-shadow: 0 0 40px 40px #3498db inset, 0 0 0 0 #3498db;
+  -webkit-transition: all 150ms ease-in-out;
+  transition: all 150ms ease-in-out;
+  position: absolute;
+  left:15px;
+  z-index:1000;
+  float: left;
+  top: 466px;
+  font-size: 14px;
+  font-weight: bold;
+  width: 100px;
+  height: 40px;
+    }
+
+
+
+.button2:hover {
+  box-shadow: 0 0 10px 0 #3498db inset, 0 0 10px 4px #3498db;
+  color: #ffffff;
+  background-color: #000000;
