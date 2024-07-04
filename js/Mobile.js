@@ -225,7 +225,7 @@ function fetchRadarImages(){
       "national": 0.9
     }
   }));
-  radarImage.setAttribute("src", "https://localhost:3001/radar/radar2.html");
+  radarImage.setAttribute("src", "https://K-A-0-S.github.io/radar/radar2.html");
   radarImage.style.width = "1239px"
   radarImage.style.height = "1200px"
   radarImage.style.marginTop = "0px"
@@ -265,7 +265,7 @@ function fetchRadarImages(){
         "national": 0.9
       }
     }));
-   zoomedRadarImage.setAttribute("src", "https://localhost:3001/radar/radar4.html");
+   zoomedRadarImage.setAttribute("src", "https://K-A-0-S.github.io/radar/radar4.html");
    zoomedRadarImage.style.width = "1239px"
    zoomedRadarImage.style.height = "1200px"
    zoomedRadarImage.style.marginTop = "-370px"
