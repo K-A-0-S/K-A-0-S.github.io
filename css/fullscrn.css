@@ -39,9 +39,9 @@
 
         font-size: 8px;
         position: absolute;
-        left:13px;
+        right:13px;
         z-index:1000;
-        float: left;
+        float: right;
         top: 10px;
         font-size: 10px;
         width: 70px;
@@ -69,9 +69,9 @@
 
         font-size: 8px;
         position: absolute;
-        left:13px;
+        right:13px;
         z-index:1000;
-        float: left;
+        float: right;
         top: 40px;
         font-size: 10px;
         width: 70px;
