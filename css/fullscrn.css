@@ -30,43 +30,60 @@
 
 
 
-   .button {
-        background-color: #000000;
-        color: #FFFFFF;
-        padding: 1px;
-        border-radius: 10px;
-        -moz-border-radius: 10px;
-        -webkit-border-radius: 10px;
-        margin:0px
+  .button {
+  border-color: #3498db;
+  color: #ffffff;
+  box-shadow: 0 0 40px 40px #3498db inset, 0 0 0 0 #3498db;
+  -webkit-transition: all 150ms ease-in-out;
+  transition: all 150ms ease-in-out;
+
         font-size: 8px;
         position: absolute;
-        right:13px;
+        left:13px;
         z-index:1000;
-        float: right;
+        float: left;
         top: 10px;
         font-size: 10px;
-        width: 60px;
-
+        width: 70px;
+        height: 20px;
 
 
     }
+
+
+
+.button:hover {
+  box-shadow: 0 0 10px 0 #3498db inset, 0 0 10px 4px #3498db;
+  color: #ffffff;
+  background-color: #000000;
+}
+
 
 
    .button2 {
-        background-color: #000000;
-        color: #FFFFFF;
-        padding: 1px;
-        border-radius: 10px;
-        -moz-border-radius: 10px;
-        -webkit-border-radius: 10px;
-        margin:0px
+  border-color: #3498db;
+  color: #ffffff;
+  box-shadow: 0 0 40px 40px #3498db inset, 0 0 0 0 #3498db;
+  -webkit-transition: all 150ms ease-in-out;
+  transition: all 150ms ease-in-out;
+
         font-size: 8px;
         position: absolute;
-        right:13px;
+        left:13px;
         z-index:1000;
-        float: right;
-        top: 30px;
+        float: left;
+        top: 40px;
         font-size: 10px;
-        width: 60px;
+        width: 70px;
+        height: 20px;
+
 
     }
+
+
+
+.button2:hover {
+  box-shadow: 0 0 10px 0 #3498db inset, 0 0 10px 4px #3498db;
+  color: #ffffff;
+  background-color: #000000;
+}
