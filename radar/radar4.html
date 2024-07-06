@@ -6,10 +6,30 @@
 <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
 <link rel="stylesheet" type="text/css" href="css/radar4.css">
 
+<script src="https://K-A-0-S.github.io/js/Config.js"></script>
+<script src="https://K-A-0-S.github.io/js/MainRadar.js"></script>
+<script src="https://K-A-0-S.github.io/js/Radar.js"></script>
+<script src="https://K-A-0-S.github.io/js/InformationSetting.js"></script>
+<script src="https://K-A-0-S.github.io/js/Conditions.js"></script>
 </head>
+
+<script>
+
+function radarfull() {
+
+  localStorage.setItem('loop', 'y');
+  CONFIG.loop = true;
+  
+  window.parent.location.href= 'https://K-A-0-S.github.io/warnings3.html';
+
+}
+
+</script>
 
 <body style="background-color:#E0FFFF;">
    <table id="wrapper">
+  <input type="image" value="Local Radar" style="height:33px;width:110px;" src="https://K-A-0-S.github.io/assets/logos/Alerts.png" class="button2" onclick="radarfull();" />  
+
       <tr>
          <td><img class="radar4" src="https://forecast.weather.gov/wwamap/png/US.png" /></td>
 

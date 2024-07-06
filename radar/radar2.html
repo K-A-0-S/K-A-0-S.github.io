@@ -1,16 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
-
-
 <head>
 <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
 <link rel="stylesheet" type="text/css" href="css/radar2.css">
-
+<script src="https://K-A-0-S.github.io/js/Config.js"></script>
+<script src="https://K-A-0-S.github.io/js/MainRadar.js"></script>
+<script src="https://K-A-0-S.github.io/js/Radar.js"></script>
+<script src="https://K-A-0-S.github.io/js/InformationSetting.js"></script>
+<script src="https://K-A-0-S.github.io/js/Conditions.js"></script>
 </head>
+
+<script>
+
+function radarfull() {
+
+  localStorage.setItem('loop', 'y');
+  CONFIG.loop = true;
+  
+  window.parent.location.href= 'https://K-A-0-S.github.io/georadar3.html';
+
+}
+
+</script>
+
+
+
 
 <body style="background-color:#E0FFFF;">
    <table id="wrapper">
-  <input type="image" value="Local Radar" style="height:33px;width:165px;" src="https://K-A-0-S.github.io/assets/logos/LocalRadar.png" class="button2" onclick="window.parent.location.href= 'http://K-A-0-S.github.io/georadar3.html';" />  
+  <input type="image" value="Local Radar" style="height:33px;width:165px;" src="https://K-A-0-S.github.io/assets/logos/LocalRadar.png" class="button2" onclick="radarfull();" />  
       <tr>
          <td><img class="radar2" src="https://vortex.plymouth.edu/mapwall/regionalrad/regional/small/anim-us-3_v2.gif" /></td>
 
