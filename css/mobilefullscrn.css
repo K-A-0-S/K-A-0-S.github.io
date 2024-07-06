@@ -13,20 +13,11 @@
 
 
    .button {
-        display: inline-block;
-
-        background-color: #000000;
-        color: #FFFFFF;
-        padding: 1px;
-        border-radius: 2em;
-        margin:0px
-        box-sizing: border-box;
-  	text-decoration: none;
-  	font-family: "Roboto", sans-serif;
- 	
- 	text-shadow: 0 0.04em 0.04em rgba(255, 255, 255, 0.253);
-  	text-align: center;
-  	transition: all 0.2s;
+  border-color: #3498db;
+  color: #ffffff;
+  box-shadow: 0 0 40px 40px #3498db inset, 0 0 0 0 #3498db;
+  -webkit-transition: all 150ms ease-in-out;
+  transition: all 150ms ease-in-out;
 
         font-size: 8px;
         position: absolute;
@@ -35,52 +26,46 @@
         float: left;
         top: 10px;
         font-size: 10px;
-        width: 60px;
+        width: 70px;
         height: 20px;
 
 
     }
 
 
+
 .button:hover {
-  color: black;
-  background-color: rgb(255, 255, 255);
+  box-shadow: 0 0 10px 0 #3498db inset, 0 0 10px 4px #3498db;
+  color: #ffffff;
+  background-color: #000000;
 }
 
 
 
    .button2 {
-        display: inline-block;
-
-        background-color: #000000;
-        color: #FFFFFF;
-        padding: 1px;
-        border-radius: 2em;
-        margin:0px
-        box-sizing: border-box;
-  	text-decoration: none;
-  	font-family: "Roboto", sans-serif;
- 	
- 	text-shadow: 0 0.04em 0.04em rgba(255, 255, 255, 0.253);
-  	text-align: center;
-  	transition: all 0.2s;
+  border-color: #3498db;
+  color: #ffffff;
+  box-shadow: 0 0 40px 40px #3498db inset, 0 0 0 0 #3498db;
+  -webkit-transition: all 150ms ease-in-out;
+  transition: all 150ms ease-in-out;
 
         font-size: 8px;
         position: absolute;
-        right:13px;
+        left:13px;
         z-index:1000;
-        float: right;
+        float: left;
         top: 40px;
         font-size: 10px;
-        width: 60px;
+        width: 70px;
         height: 20px;
 
 
     }
 
 
-.button2:hover {
-  color: black;
-  background-color: rgb(255, 255, 255);
-}
 
+.button2:hover {
+  box-shadow: 0 0 10px 0 #3498db inset, 0 0 10px 4px #3498db;
+  color: #ffffff;
+  background-color: #000000;
+}
