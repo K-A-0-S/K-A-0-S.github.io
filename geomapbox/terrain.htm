@@ -32,7 +32,7 @@
 
 
 <!-- Load the `mapbox-gl-geocoder` plugin. -->
-<script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v5.0.0/mapbox-gl-geocoder.min.js"></script>
+<script src="mapbox-gl-geocoder.min.js"></script>
 <link rel="stylesheet" href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v5.0.0/mapbox-gl-geocoder.css" type="text/css">
 
 
@@ -51,8 +51,8 @@ const startMinutes = -60; // start time offset relative to now, where negative m
 const endMinutes = 0;
 
 const MAPBOX_TOKEN = 'pk.eyJ1IjoiYmxhcmsiLCJhIjoiY2plaGZmaGR1MGZ3cTJ3bzZ6OHp5OGZzYyJ9.5dVrsWJk208YPShD-0HLsQ';
-const AERIS_ID = 'Dm03vP5oguuuoHKQi2tS1';
-const AERIS_KEY = 'LkghluSKwVkLLPg07tg4kXE02Kj2uA2amLZYP9dY';
+const AERIS_ID = 'wgE96YE3scTQLKjnqiMsv';
+const AERIS_KEY = 'SVG2gQFV8y9DjKR0BRY9wPoSLvrMrIqF9Lq2IYaY';
 const NUM_COLORS = '256'; // set to empty string for true color png
 const TILE_SIZE = 256;
 
@@ -61,7 +61,7 @@ const TILE_SIZE = 256;
 const layers = [
     'terrain:30,alerts:50',
     // 'satellite',
-    'radar:65:blur(0)',
+    'radar:70:blur(0)',
     //'stormcells'
 ];
 
