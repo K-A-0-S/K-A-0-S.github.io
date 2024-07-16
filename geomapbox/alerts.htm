@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <title>Mapbox GL Animation - Xweather Raster Maps</title>
+    <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
+
+
+    <link href="https://api.mapbox.com/mapbox-gl-js/v3.5.1/mapbox-gl.css" rel="stylesheet">
+    <script src="https://api.mapbox.com/mapbox-gl-js/v3.5.1/mapbox-gl.js"></script>
+
+
+
+
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+        #map {
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+
+
+</head>
+<body>
+
+
+
+
+<!-- Load the `mapbox-gl-geocoder` plugin. -->
+<script src="mapbox-gl-geocoder.min.js"></script>
+<link rel="stylesheet" href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v5.0.0/mapbox-gl-geocoder.css" type="text/css">
+
+
+
+
+
+
+
+
+<div id="map" class="mapboxgl-map"><div class="mapboxgl-canary" style="visibility: hidden;"></div><div class="mapboxgl-canvas-container mapboxgl-interactive mapboxgl-touch-drag-pan mapboxgl-touch-zoom-rotate"><canvas class="mapboxgl-canvas" tabindex="0" aria-label="Map" style="width: 796px; height: 400px;" width="796" height="400"></canvas></div><div class="mapboxgl-control-container"><div class="mapboxgl-ctrl-top-left"></div><div class="mapboxgl-ctrl-top-right"></div><div class="mapboxgl-ctrl-bottom-left"><div class="mapboxgl-ctrl" style="display: block;"><a class="mapboxgl-ctrl-logo" target="_blank" rel="noopener nofollow" href="https://www.mapbox.com/" aria-label="Mapbox logo"></a></div></div><div class="mapboxgl-ctrl-bottom-right"><div class="mapboxgl-ctrl mapboxgl-ctrl-attrib"><div class="mapboxgl-ctrl-attrib-inner"><a href="https://www.aerisweather.com/">Xweather</a> | <a href="https://www.mapbox.com/about/maps/" target="_blank" title="Mapbox" aria-label="Mapbox">© Mapbox</a> <a href="https://www.openstreetmap.org/about/" target="_blank" title="OpenStreetMap" aria-label="OpenStreetMap">© OpenStreetMap</a> <a class="mapbox-improve-map" href="https://apps.mapbox.com/feedback/?owner=mapbox&amp;id=streets-v11&amp;access_token=pk.eyJ1IjoiYmxhcmsiLCJhIjoiY2plaGZmaGR1MGZ3cTJ3bzZ6OHp5OGZzYyJ9.5dVrsWJk208YPShD-0HLsQ" target="_blank" title="Improve this map" aria-label="Improve this map" rel="noopener nofollow">Improve this map</a></div></div></div></div></div>
+
+<script>
+
+const frameCount = 10; // total intervals
+const startMinutes = -60; // start time offset relative to now, where negative means past
+const endMinutes = 0;
+
+const MAPBOX_TOKEN = 'pk.eyJ1IjoiYmxhcmsiLCJhIjoiY2plaGZmaGR1MGZ3cTJ3bzZ6OHp5OGZzYyJ9.5dVrsWJk208YPShD-0HLsQ';
+const AERIS_ID = 'wgE96YE3scTQLKjnqiMsv';
+const AERIS_KEY = 'SVG2gQFV8y9DjKR0BRY9wPoSLvrMrIqF9Lq2IYaY';
+const NUM_COLORS = '256'; // set to empty string for true color png
+const TILE_SIZE = 256;
+
+// layer to include on the map
+// uncomment more layers or add more!
+const layers = [
+    'alerts:50',
+    // 'satellite',
+    'radar:70:blur(0)',
+    //'stormcells'
+];
+
+function getTilePath(server, interval) {
+    return `https://maps${server}.aerisapi.com/${AERIS_ID}_${AERIS_KEY}/${layers.join(',')}/{z}/{x}/{y}/${interval}min.png${NUM_COLORS}`;
+}
+
+window.addEventListener('load', () => {
+    mapboxgl.accessToken = MAPBOX_TOKEN;
+
+    const map = new mapboxgl.Map({
+        container: 'map',
+        style: 'mapbox://styles/mapbox/streets-v11',
+        center: [-95, 40],
+        zoom: 4
+    });
+
+
+
+
+
+    // Add the control to the map.
+    map.addControl(
+        new MapboxGeocoder({
+            accessToken: mapboxgl.accessToken,
+            mapboxgl: mapboxgl
+        })
+    );
+
+
+
+
+
+
+
+
+    function addRasterLayer(map, interval, opacity = 0) {
+        const id = `amp-${layers.join('::')}-${interval}`;
+        map.addSource(id, {
+            type: 'raster',
+            tiles: [1, 2, 3, 4].map((s) => getTilePath(s, interval)),
+            tileSize: TILE_SIZE,
+            attribution: '<a href="https://www.aerisweather.com/">Xweather</a>'
+        });
+        map.addLayer({
+            id, 
+            type: 'raster',
+            source: id,
+            minzoom: 0,
+            maxzoom: 22,
+            paint: {
+                'raster-opacity': opacity,
+                'raster-opacity-transition': {
+                    duration: 0,
+                    delay: 0
+                }
+            }
+        });
+
+        return id;
+    }
+
+    function setRasterLayerOpacity(map, id, opacity) {
+        map.setPaintProperty(id, 'raster-opacity', opacity);
+    }
+
+    map.on('load', () => {
+        const interval = (endMinutes - startMinutes) / frameCount;
+        // set up the animation frames and layers
+        const frames = [];
+        for (let i = 0; i < frameCount; i += 1) {
+            const opacity = (i === 0) ? 1 : 0;
+            const timeOffset = startMinutes + interval * i;
+            const id = addRasterLayer(map, timeOffset, opacity);
+            frames.push(id);
+        }
+
+        // wait time determines how long to wait and allow frames to load before
+        // beginning animation playback
+        const waitTime = 5000;
+
+        // step time determines the time in milliseconds each frame holds before advancing
+        const stepTime = 1000;
+
+        let currentOffset = 0;
+        let previousOffset = currentOffset;
+
+        setTimeout(() => {
+            setInterval(() => {
+                previousOffset = currentOffset;
+                currentOffset += 1;
+                if (currentOffset === frames.length - 1) {
+                    currentOffset = 0;
+                }
+                setRasterLayerOpacity(map, frames[previousOffset], 0);
+                setRasterLayerOpacity(map, frames[currentOffset], 1);
+            }, stepTime);
+        }, waitTime);
+    });
+});
+</script>
+
+<script src="mapbox-animation_data/mapbox-gl.js" async="" defer="defer"></script>
+<link href="mapbox-animation_data/mapbox-gl.css" rel="stylesheet">
+
+
+</body></html>
