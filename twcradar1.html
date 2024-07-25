@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-  <link rel="shortcut icon" type="image/png" href="assets/logos/favicon.png"/>
+  <link rel="shortcut icon" type="image/png" href="assets/logos/NOAA.png"/>
   <link rel="stylesheet" type="text/css" href="css/text.css">
   <link rel="stylesheet" type="text/css" href="css/style.css">
   <link rel="stylesheet" type="text/css" href="css/page.css">
@@ -14,31 +14,97 @@
   <link rel="stylesheet" type="text/css" href="css/greeting.css">
   <link rel="stylesheet" type="text/css" href="css/infobar.css">
   <link rel="stylesheet" type="text/css" href="css/outlook.css">
-  <link rel="stylesheet" type="text/css" href="css/radar.css">
-  <link rel="stylesheet" type="text/css" href="css/settings.css">
+  
+  <link rel="stylesheet" type="text/css" href="css/radarsettings.css">
   <link rel="stylesheet" type="text/css" href="css/timeline.css">
   <link rel="stylesheet" type="text/css" href="css/amazing.css">
   <link rel="stylesheet" type="text/css" href="css/updated.css">
-  <meta http-equiv="Permissions-Policy" content="interest-cohort=()">
-  <link rel="preload" as="audio" href="assets/music/jingle.wav">
-  <link rel="preload" as="audio" href="assets/music/storm.wav">
   <link rel="preload" href="/fonts/akkopro-light.ttf" as="font" type="font/ttf" crossorigin>
   <link rel="preload" href="/fonts/akkopro-thin.otf" as="font" type="font/ttf" crossorigin>
-  <script src="assets/music/jingle.wav"></script>
-  <script src="assets/music/storm.wav"></script>
   <script src="js/Config.js"></script>
-  <script src="js/MainScript.js"></script>
-  <script src="js/Mobile.js"></script>
+  <script src="js/MainTWC.js"></script>
+  <script src="js/TWCRadar1.js"></script>
   <script src="js/InformationSetting.js"></script>
   <script src="js/Conditions.js"></script>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="viewport" content="width=660,user-scalable=no" />
-  <meta name="apple-mobile-web-app-capable" content="yes" />
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-  <title>IntelliSTAR Emulator</title>
+
+
+
+<script defer src="https://cdn.aerisapi.com/sdk/js/1.8.0/aerisweather.min.js"></script>
+<link rel="stylesheet" href="https://cdn.aerisapi.com/sdk/js/1.8.0/aerisweather.css">
+
+
+<script src="mapbox-animation_data/mapbox-gl.js" async="" defer="defer"></script>
+<link href="mapbox-animation_data/mapbox-gl.css" rel="stylesheet">
+
+
+<link href="https://api.mapbox.com/mapbox-gl-js/v2.8.0/mapbox-gl.css" rel="stylesheet" />
+<script defer src="https://api.mapbox.com/mapbox-gl-js/v2.8.0/mapbox-gl.js"></script>
+ 
+<link href="https://cdn.aerisapi.com/sdk/js/mapsgl/latest/aerisweather.mapsgl.css" rel="stylesheet" />
+<script defer src="https://cdn.aerisapi.com/sdk/js/mapsgl/latest/aerisweather.mapsgl.js"></script>
+
+
+<script defer src="https://cdn.aerisapi.com/sdk/js/1.8.0/aerisweather.min.js"></script>
+<link rel="stylesheet" href="https://cdn.aerisapi.com/sdk/js/1.8.0/aerisweather.css">
+
+
+<meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
+
+  <title>TWC Radar</title>
+
+
+
+    <link
+      href="https://api.mapbox.com/mapbox-gl-js/v2.3.0/mapbox-gl.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.7.0/mapbox-gl-geocoder.css"
+      type="text/css"
+    />
+    <script src="https://api.mapbox.com/mapbox-gl-js/v2.3.0/mapbox-gl.js"></script>
+    <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.7.0/mapbox-gl-geocoder.min.js"></script>
+
+
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+      }
+      #map {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 100%;
+      }
+      #weather {
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        z-index: 10;
+        font-family: Helvetica, Arial, sans-serif;
+        background-color: #fff;
+        opacity: 0.75;
+        padding: 10px;
+        visibility: hidden;
+      }
+      #city-name,
+      #temp,
+      #conditions {
+        margin: 0;
+      }
+   
+ </style>
+
+
+
+
+
 </head>
 
+<body>	
 
 
 <script>
@@ -46,59 +112,50 @@ function nws() {
 
   localStorage.setItem('loop', 'y');
   CONFIG.loop = true;
-  location.href = "https://K-A-0-S.github.io/georadar3.html";
+
 }
 
-
-
-
-
-
-
-
-
-
-
-
+nws();
 
 
 </script>
 
-<script>
-function intellistar() {
 
-  localStorage.setItem('loop', 'n');
-  CONFIG.loop = false;
 
-  window.location.reload();
-}
-</script>
+
+
+<!-- Load the `mapbox-gl-geocoder` plugin. -->
+<script src="mapbox-gl-geocoder.min.js"></script>
+<link rel="stylesheet" href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v5.0.0/mapbox-gl-geocoder.css" type="text/css">
+
 
 
 	
-<body>
-
-  <div id="render-frame">
-
-    <!--Nature Background image-->
-
-    <div id="background-image" class="below-screen">  
-
-
-	  <div id="contentframe" style="position:relative; top: 300px; left: 1460px;">
-       <iframe id="iframe" src="amwx.html" allowtransparency="true" width="375" height="340" frameBorder="0"></iframe>
-      </div>
+    <div id="weather">
+      <h4 id="city-name"></h4>
+      <h1 id="temp"></h1>
+      <h5 id="conditions"></h5>
     </div>
+    <div id="map"></div>
+
+
+
+
+
+
+  <div style="display:none" id="render-frame">
+    <!--Nature Background image-->
+    <div id="background-image" class="below-screen"></div>
 
     <!-- Top Information Bar -->
     <div id="infobar-container">
       <img id="infobar-twc-logo" src="assets/logos/twc.svg" onclick="twcLogoClick();" />
-      <img id="infobar-local-logo" src="assets/logos/local.svg" onclick="twcLogoClick();" />
-      <div id="infobar-location-container" class="infobar-item-container" onclick="nws();" >
+      <img id="infobar-local-logo" src="assets/logos/local.svg" />
+      <div id="infobar-location-container" class="infobar-item-container">
         <div id="infobar-location-text" class="regular-text infobar-text"></div>
       </div>
       <div id="infobar-time-container" class="infobar-item-container">
-        <div id="infobar-time-text" class="regular-text infobar-text" onclick="window.location.reload();"></div>
+        <div id="infobar-time-text" class="regular-text infobar-text"></div>
       </div>
     </div>
 
@@ -250,7 +307,7 @@ function intellistar() {
           <div style="display: inline-block">Regional Radar</div>
         </div>
         <div class="page-content-container">
-          <div id="radar-container" class="radar-container" style="position: absolute;">     
+          <div id="radar-container" class="radar-container" style="position: absolute;">
           </div>
         </div>
       </div>
@@ -420,13 +477,13 @@ function intellistar() {
     <!-- Timeline Container -->
     <div id="timeline-container">
       <!-- Current Logo -->
-      <div id="timeline-logo-container" onclick="intellistar();"">
+      <div id="timeline-logo-container">
         <div id="logo-stack"></div>
       </div>
 
       <!-- Timeline -->
       <div id="timeline">
-        <div id="timeline-event-container" onclick="intellistar();"></div>
+        <div id="timeline-event-container"></div>
         <div style="height: 15%;">
           <div class="progress-container" style="width: 280px;">
             <div id="progressbar-container" class="timeline-bar">
@@ -451,6 +508,8 @@ function intellistar() {
         <tbody>
         
           <!-- Locations won't be added programatically -->
+          <img src="\assets\logos\NWS.png" alt="NWS" width="350" height="38">
+
           <tr>
             <td style="text-align: left;">
               <input type="radio" id="airport-code-button" name='location-type' checked="false"/>
@@ -479,13 +538,11 @@ function intellistar() {
 
         </tbody>
       </table>
+        
       <div id="advanced-settings-options" class="settings-container hidden"></div>
-       <a href="https://K-A-0-S.github.io/mobilefullscrn2.html" style="color: white; font-size: 15px; font-family: akkoThin;">NWS Fullscreen Radar</a>
-      
     </div>
   </div>
 
 </body>
-
 
 </html>
