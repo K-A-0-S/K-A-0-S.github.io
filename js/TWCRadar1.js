@@ -195,11 +195,6 @@ function fetchCurrentWeather(){
 
 }
 
-function URL() {
-    location.href = "https://radar.weather.gov/?settings=v1_"+mapSettings;
-
-}
-
 function fetchRadarImages(){
   radarImage = document.createElement("iframe");
   radarImage.onerror = function () {
@@ -211,7 +206,7 @@ function fetchRadarImages(){
       "id": "weather",
       "center": [longitude, latitude],
       "location": null,
-      "zoom": 8
+      "zoom": 10
     },
     "animating": true,
     "base": "standard",
@@ -223,17 +218,27 @@ function fetchRadarImages(){
     "menu": false,
     "shortFusedOnly": false,
     "opacity": {
-      "alerts": 0.4,
+      "alerts": 0.0,
       "local": 0.0,
       "localStations": 0.0,
-      "national": 0.9
+      "national": 0.6
     }
   }));
-  radarImage.setAttribute("src", "https://k-a-0-s.github.io/twcradar1.html");
-  radarImage.style.width = "1230px"
-  radarImage.style.height = "740px"
-  radarImage.style.marginTop = "-220px"
+  
+  radarImage.setAttribute("src", "https://kaosfactor.github.io/radar/radar.html");
+  radarImage.style.width = "1239px"
+  radarImage.style.height = "1200px"
+  radarImage.style.marginTop = "-670px"
   radarImage.style.overflow = "hidden"
+
+
+
+
+  //radarImage.setAttribute("src", "https://radar.weather.gov/?settings=v1_" + mapSettings);
+  //radarImage.style.width = "1230px"
+  //radarImage.style.height = "740px"
+  //radarImage.style.marginTop = "-420px"
+  //radarImage.style.overflow = "hidden"
   
   if(alertsActive){
     zoomedRadarImage = new Image();
@@ -266,21 +271,139 @@ function fetchRadarImages(){
         "alerts": 0.0,
         "local": 0.0,
         "localStations": 0.0,
-        "national": 0.9
+        "national": 0.6
       }
     }));
-    zoomedRadarImage.setAttribute("src", "https://k-a-0-s.github.io/twcradar2.html");
-    zoomedRadarImage.style.width = "1230px"
-    zoomedRadarImage.style.height = "740px"
-    zoomedRadarImage.style.marginTop = "-220px"
-    zoomedRadarImage.style.overflow = "hidden"
+    
+   zoomedRadarImage.setAttribute("src", "https://kaosfactor.github.io/radar/radar1.html");
+   zoomedRadarImage.style.width = "1239px"
+   zoomedRadarImage.style.height = "1200px"
+   zoomedRadarImage.style.marginTop = "-570px"
+   zoomedRadarImage.style.overflow = "hidden"
+
+
+
+    //zoomedRadarImage.setAttribute("src", "https://radar.weather.gov/?settings=v1_" + mapSettings);
+    //zoomedRadarImage.style.width = "1230px"
+    //zoomedRadarImage.style.height = "740px"
+    //zoomedRadarImage.style.marginTop = "-320px"
+    //zoomedRadarImage.style.overflow = "hidden"
+
   }
 
-  scheduleTimeline();
-  startRadar();
-  startZoomedRadar();
+scheduleTimeline();
+///////////////////////////////////////////////////////////////////////////////////////////////
 
+
+      // set up API credentials
+      mapboxgl.accessToken = "pk.eyJ1IjoiYmxhcmsiLCJhIjoiY2plaGZmaGR1MGZ3cTJ3bzZ6OHp5OGZzYyJ9.5dVrsWJk208YPShD-0HLsQ";
+      const twcApiKey = "e1f10a1e78da46f5b10a1e78da96f525";
+
+      // set up a promise for The Weather Company product metadata
+      const timeSlices = fetch(
+        "https://api.weather.com/v3/TileServer/series/productSet/PPAcore?apiKey=" +
+          twcApiKey
+      );
+
+      // set DOM elements for the current conditions info
+      const weatherWidget = document.getElementById("weather");
+      const cityName = document.getElementById("city-name");
+      const temp = document.getElementById("temp");
+      const conditions = document.getElementById("conditions");
+
+      // set up map and geocoder control
+      const map = new mapboxgl.Map({
+        container: "map", // container id
+        style: "mapbox://styles/mapbox/streets-v11", // style URL
+        center: [longitude, latitude], // starting position [lng, lat]
+        zoom: 7, // starting zoom
+      });
+
+      const geocoder = new MapboxGeocoder({
+        accessToken: mapboxgl.accessToken,
+        mapboxgl: mapboxgl,
+      });
+
+      map.addControl(geocoder);
+
+      // this function resolves the metadata promise,
+      // extracts the most recent publish time for radar data,
+      // and adds the radar layer to the map
+      const addRadarLayer = () => {
+        timeSlices
+          .then((res) => res.json())
+          .then((res) => {
+            const radarTimeSlices = res.seriesInfo.radar.series;
+            const latestTimeSlice = radarTimeSlices[0].ts;
+
+            // insert the latest time for radar into the source data URL
+            map.addSource("twcRadar", {
+              type: "raster",
+              tiles: [
+                "https://api.weather.com/v3/TileServer/tile/radar?ts=" +
+                  latestTimeSlice +
+                  "&xyz={x}:{y}:{z}&apiKey=" +
+                  twcApiKey,
+              ],
+              tileSize: 256,
+            });
+
+            // place the layer before the "aeroway-line" layer
+            map.addLayer(
+              {
+                id: "radar",
+                type: "raster",
+                source: "twcRadar",
+                paint: {
+                  "raster-opacity": 0.5,
+                },
+              },
+              "aeroway-line"
+            );
+          });
+      };
+
+      // this function gets the current conditions
+      // and displays data from the respons in the
+      // DOM elements extracted above
+      const getCurrentConditions = (e) => {
+        // saving data from the Mapbox Search response
+        const cityNameText = e.result.text;
+        const longitude = e.result.geometry.coordinates[0];
+        const latitude = e.result.geometry.coordinates[1];
+
+        // set up the observations endpoint request URL
+        // with the Search result coordinates
+        const currentConditionsURL =
+          "https://api.weather.com/v1/geocode/" +
+          latitude +
+          "/" +
+          longitude +
+          "/observations.json?language=en-US&units=e&apiKey=" +
+          twcApiKey;
+
+        fetch(currentConditionsURL)
+          .then((res) => res.json())
+          .then((res) => {
+            const tempText = res.observation.temp;
+            const conditionsText = res.observation.wx_phrase;
+
+            weatherWidget.style.visibility = "visible";
+            cityName.innerText = cityNameText;
+            temp.innerText = tempText;
+            conditions.innerText = conditionsText;
+          });
+      };
+
+      map.on("load", () => {
+        addRadarLayer();
+      });
+
+      geocoder.on("result", (e) => {
+        getCurrentConditions(e);
+      });
 
 
 }
+
 
