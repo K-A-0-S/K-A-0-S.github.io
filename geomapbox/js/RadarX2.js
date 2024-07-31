@@ -257,8 +257,8 @@ function fetchRadarImages(){
   //window.location.href = "https://radar.weather.gov/?settings=v1_"+mapSettings;
 
  
-const frameCount = 10; // total intervals
-const startMinutes = -60; // start time offset relative to now, where negative means past
+const frameCount = 5; // total intervals
+const startMinutes = -30; // start time offset relative to now, where negative means past
 const endMinutes = 0;
 
 const MAPBOX_TOKEN = 'pk.eyJ1IjoiYmxhcmsiLCJhIjoiY2plaGZmaGR1MGZ3cTJ3bzZ6OHp5OGZzYyJ9.5dVrsWJk208YPShD-0HLsQ';
