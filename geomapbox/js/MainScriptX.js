@@ -61,9 +61,10 @@ function setClockTime(){
 }
 
 const baseSize = {
-    w: 1920,
-    h: 1080
+    w: 375,
+    h: 667
 }
+
 
 window.onresize = resizeWindow;
 function resizeWindow(){
