@@ -577,7 +577,4 @@ function postYourAdd () {
     iframe.attr("src", iframe.data("src")); 
 }
 
-function URL() {
-    location.href = "https://radar.weather.gov/?settings=v1_"+mapSettings;
 
-}
