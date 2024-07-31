@@ -112,8 +112,8 @@ function checkStormMusic(){
 function startAnimation(){
   setInitialPositionCurrentPage();
 
-  //jingle.play();
-  setTimeout(jingle.play, 1000)
+  jingle.play();
+ 
   setTimeout(startMusic, 6000)
   executeGreetingPage();
 
