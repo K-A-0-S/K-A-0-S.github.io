@@ -258,6 +258,8 @@ function startRadar(){
 
 function startZoomedRadar(){
   getElement('zoomed-radar-container').appendChild(zoomedRadarImage);
+
+  
 }
 
 function loadCC(){
