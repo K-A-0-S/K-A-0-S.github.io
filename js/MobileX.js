@@ -229,7 +229,7 @@ function fetchRadarImages(){
       "national": 0.9
     }
   }));
-  radarImage.setAttribute("src", "https://k-a-0-s.github.io/XRadar1.html");
+  radarImage.setAttribute("src", "https://k-a-0-s.github.io/geomapbox/XRadar1.html");
   radarImage.style.width = "1230px"
   radarImage.style.height = "740px"
   radarImage.style.marginTop = "-220px"
@@ -269,7 +269,7 @@ function fetchRadarImages(){
         "national": 0.9
       }
     }));
-    zoomedRadarImage.setAttribute("src", "https://k-a-0-s.github.io/XRadar2.html");
+    zoomedRadarImage.setAttribute("src", "https://k-a-0-s.github.io/geomapbox/XRadar2.html");
     zoomedRadarImage.style.width = "1230px"
     zoomedRadarImage.style.height = "740px"
     zoomedRadarImage.style.marginTop = "-220px"
