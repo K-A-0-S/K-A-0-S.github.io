@@ -61,8 +61,8 @@ function setClockTime(){
 }
 
 const baseSize = {
-    w: 375,
-    h: 667
+    w: 1,
+    h: 1
 }
 
 
