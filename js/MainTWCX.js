@@ -7,8 +7,8 @@ const WEEKDAY = ["SUN",  "MON", "TUES", "WED", "THU", "FRI", "SAT"];
 
 const jingle = new Audio("assets/music/jingle.wav")
 
-const crawlSpeedCasual = 10; // A normal reading pace, in characters per second
-const crawlSpeedFast = 20; // A fast reading pace, in characters per second
+const crawlSpeedCasual = 8; // A normal reading pace, in characters per second
+const crawlSpeedFast = 17; // A fast reading pace, in characters per second
 const crawlScreenTime = 45; // Shortest time crawl will be on screen, in seconds
 const crawlSpace = 70; // Approx number of characters that can fix in the crawl bar. Used for crawl speed calcs
 
