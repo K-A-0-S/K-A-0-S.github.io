@@ -291,7 +291,10 @@ function fetchRadarImages(){
 
   }
 
-  scheduleTimeline();
+scheduleTimeline();
+///////////////////////////////////////////////////////////////////////////////////////////////
+
+
       // set up API credentials
       mapboxgl.accessToken = "pk.eyJ1IjoiYmxhcmsiLCJhIjoiY2plaGZmaGR1MGZ3cTJ3bzZ6OHp5OGZzYyJ9.5dVrsWJk208YPShD-0HLsQ";
       const twcApiKey = "e1f10a1e78da46f5b10a1e78da96f525";
@@ -302,11 +305,7 @@ function fetchRadarImages(){
           twcApiKey
       );
 
-      // set DOM elements for the current conditions info
-      const weatherWidget = document.getElementById("weather");
-      const cityName = document.getElementById("city-name");
-      const temp = document.getElementById("temp");
-      const conditions = document.getElementById("conditions");
+
 
       // set up map and geocoder control
       const map = new mapboxgl.Map({
@@ -316,12 +315,7 @@ function fetchRadarImages(){
         zoom: 9, // starting zoom
       });
 
-      const geocoder = new MapboxGeocoder({
-        accessToken: mapboxgl.accessToken,
-        mapboxgl: mapboxgl,
-      });
 
-      map.addControl(geocoder);
 
       // this function resolves the metadata promise,
       // extracts the most recent publish time for radar data,
@@ -360,45 +354,13 @@ function fetchRadarImages(){
           });
       };
 
-      // this function gets the current conditions
-      // and displays data from the respons in the
-      // DOM elements extracted above
-      const getCurrentConditions = (e) => {
-        // saving data from the Mapbox Search response
-        const cityNameText = e.result.text;
-        const longitude = e.result.geometry.coordinates[0];
-        const latitude = e.result.geometry.coordinates[1];
 
-        // set up the observations endpoint request URL
-        // with the Search result coordinates
-        const currentConditionsURL =
-          "https://api.weather.com/v1/geocode/" +
-          latitude +
-          "/" +
-          longitude +
-          "/observations.json?language=en-US&units=e&apiKey=" +
-          twcApiKey;
-
-        fetch(currentConditionsURL)
-          .then((res) => res.json())
-          .then((res) => {
-            const tempText = res.observation.temp;
-            const conditionsText = res.observation.wx_phrase;
-
-            weatherWidget.style.visibility = "visible";
-            cityName.innerText = cityNameText;
-            temp.innerText = tempText;
-            conditions.innerText = conditionsText;
-          });
-      };
 
       map.on("load", () => {
         addRadarLayer();
       });
 
-      geocoder.on("result", (e) => {
-        getCurrentConditions(e);
-      });
+
 
 
 }
