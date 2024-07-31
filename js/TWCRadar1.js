@@ -207,38 +207,10 @@ function fetchRadarImages(){
       "center": [longitude, latitude],
       "location": null,
       "zoom": 10
-    },
-    "animating": true,
-    "base": "standard",
-    "artcc": false,
-    "county": false,
-    "cwa": false,
-    "rfc": false,
-    "state": false,
-    "menu": false,
-    "shortFusedOnly": false,
-    "opacity": {
-      "alerts": 0.0,
-      "local": 0.0,
-      "localStations": 0.0,
-      "national": 0.6
     }
   }));
   
-  radarImage.setAttribute("src", "https://kaosfactor.github.io/radar/radar.html");
-  radarImage.style.width = "1239px"
-  radarImage.style.height = "1200px"
-  radarImage.style.marginTop = "-670px"
-  radarImage.style.overflow = "hidden"
 
-
-
-
-  //radarImage.setAttribute("src", "https://radar.weather.gov/?settings=v1_" + mapSettings);
-  //radarImage.style.width = "1230px"
-  //radarImage.style.height = "740px"
-  //radarImage.style.marginTop = "-420px"
-  //radarImage.style.overflow = "hidden"
   
   if(alertsActive){
     zoomedRadarImage = new Image();
@@ -257,39 +229,12 @@ function fetchRadarImages(){
         "center": [longitude, latitude],
         "location": null,
         "zoom": 10
-      },
-      "animating": true,
-      "base": "standard",
-      "artcc": false,
-      "county": false,
-      "cwa": false,
-      "rfc": false,
-      "state": false,
-      "menu": false,
-      "shortFusedOnly": false,
-      "opacity": {
-        "alerts": 0.0,
-        "local": 0.0,
-        "localStations": 0.0,
-        "national": 0.6
       }
     }));
     
-   zoomedRadarImage.setAttribute("src", "https://kaosfactor.github.io/radar/radar1.html");
-   zoomedRadarImage.style.width = "1239px"
-   zoomedRadarImage.style.height = "1200px"
-   zoomedRadarImage.style.marginTop = "-570px"
-   zoomedRadarImage.style.overflow = "hidden"
-
-
-
-    //zoomedRadarImage.setAttribute("src", "https://radar.weather.gov/?settings=v1_" + mapSettings);
-    //zoomedRadarImage.style.width = "1230px"
-    //zoomedRadarImage.style.height = "740px"
-    //zoomedRadarImage.style.marginTop = "-320px"
-    //zoomedRadarImage.style.overflow = "hidden"
 
   }
+
 
 scheduleTimeline();
 ///////////////////////////////////////////////////////////////////////////////////////////////
