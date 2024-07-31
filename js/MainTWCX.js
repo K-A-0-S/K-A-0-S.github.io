@@ -217,7 +217,7 @@ function executePage(pageIndex, subPageIndex){
     
   }
   else if(currentSubPageName == 'zoomed-radar-page'){
-    startZoomedRadar();
+    
   }
   else if(currentSubPageName == "7day-page"){
   }
