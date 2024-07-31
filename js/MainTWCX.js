@@ -115,7 +115,7 @@ function startAnimation(){
   jingle.play();
   setTimeout(startMusic, 6000)
   executeGreetingPage();
-  
+}  
 function startMusic(){
   music.play();
 }
