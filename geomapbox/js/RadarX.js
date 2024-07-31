@@ -257,7 +257,7 @@ function fetchRadarImages(){
   //window.location.href = "https://radar.weather.gov/?settings=v1_"+mapSettings;
 
  
-const frameCount = 10; // total intervals
+const frameCount = 5; // total intervals
 const startMinutes = -60; // start time offset relative to now, where negative means past
 const endMinutes = 0;
 
