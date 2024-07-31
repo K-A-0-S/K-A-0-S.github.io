@@ -113,7 +113,7 @@ function startAnimation(){
   setInitialPositionCurrentPage();
 
   jingle.play();
-  setTimeout(startMusic, 1000)
+  setTimeout(startMusic, 6000)
   executeGreetingPage();
 }
 
