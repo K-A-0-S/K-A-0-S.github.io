@@ -271,7 +271,7 @@ const TILE_SIZE = 256;
 // uncomment more layers or add more!
 const layers = [
  	//'land-terrain',
-    'alerts:50',
+    //'alerts:50',
     //'satellite',
     'radar:75:blur(0)',
     //'stormcells',
