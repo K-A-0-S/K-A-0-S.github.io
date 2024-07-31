@@ -1,11 +1,5 @@
 
 
-/////////////////////////////////////////////////////////
-
-
-
-
-
 
 function guessZipCode(){
   // Skip geolookup until replaced with TWC (wunderground api dead)
