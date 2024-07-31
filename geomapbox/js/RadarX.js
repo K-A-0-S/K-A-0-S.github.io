@@ -302,7 +302,7 @@ const map = new mapboxgl.Map({
 	container: 'map',
 	style: 'mapbox://styles/mapbox/streets-v11',
 	center: [longitude, latitude],
-	zoom: 6,
+	zoom: 7,
 	projection: 'mercator'
 });
 
