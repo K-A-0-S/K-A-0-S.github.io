@@ -253,7 +253,7 @@ scheduleTimeline();
 		  layers: [base, radar],
 		  view: new ol.View({
 			center: ol.proj.transform([longitude, latitude], alk.val.SRS.EPSG4326, alk.val.SRS.EPSG3857),
-			zoom: 7
+			zoom: 8
 		  })
 		});
 
