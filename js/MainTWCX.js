@@ -96,7 +96,7 @@ function setInformation(){
   setCurrentConditions();
   setTimelineEvents();
   hideSettings();
-  setTimeout(startAnimation, 3000);
+  setTimeout(startAnimation, 4000);
 }
 
 function setMainBackground(){
