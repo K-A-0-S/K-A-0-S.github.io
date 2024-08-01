@@ -268,7 +268,7 @@ function fetchRadarImages(){
     zoomedRadarImage.setAttribute("src", "https://k-a-0-s.github.io/twcradar2.html");
     zoomedRadarImage.style.width = "1230px"
     zoomedRadarImage.style.height = "740px"
-    zoomedRadarImage.style.marginTop = "-220px"
+    zoomedRadarImage.style.marginTop = "-90px"
     zoomedRadarImage.style.overflow = "hidden"
   }
 
