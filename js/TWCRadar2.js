@@ -258,8 +258,7 @@ scheduleTimeline();
         center: [longitude, latitude], // starting position [lng, lat]
         zoom: 9, // starting zoom
       
-        minZoom: 9, 
-        maxZoom: 9     
+
       
       
       
