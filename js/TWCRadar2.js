@@ -254,7 +254,7 @@ scheduleTimeline();
       // set up map and geocoder control
       const map = new mapboxgl.Map({
         container: "map", // container id
-        style: "mapbox://styles/mapbox/streets-v9?optimize=true", // style URL
+        style: "mapbox://styles/mapbox/streets-v10?optimize=true", // style URL
         center: [longitude, latitude], // starting position [lng, lat]
         zoom: 9, // starting zoom
       
