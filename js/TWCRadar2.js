@@ -236,81 +236,26 @@ function fetchRadarImages(){
   }
 
 scheduleTimeline();
-///////////////////////////////////////////////////////////////////////////////////////////////
-
-
-      // set up API credentials
-      mapboxgl.accessToken = "pk.eyJ1IjoiYmxhcmsiLCJhIjoiY2plaGZmaGR1MGZ3cTJ3bzZ6OHp5OGZzYyJ9.5dVrsWJk208YPShD-0HLsQ";
-      const twcApiKey = "e1f10a1e78da46f5b10a1e78da96f525";
-
-      // set up a promise for The Weather Company product metadata
-      const timeSlices = fetch(
-        "https://api.weather.com/v3/TileServer/series/productSet/PPAcore?apiKey=" +
-          twcApiKey
-      );
 
 
 
-      // set up map and geocoder control
-      const map = new mapboxgl.Map({
-        container: "map", // container id
-        style: "mapbox://styles/mapbox/streets-v11?optimize=true", // style URL
-        center: [longitude, latitude], // starting position [lng, lat]
-        zoom: 9, // starting zoom
-        minZoom: 9, 
-        maxZoom: 9
-      
 
-      
-      
-      
-      });
+		alk.defaults.setApiKey('17CA0885B03A6B4FADBDC3D1A51DC0BD');
 
+		var base = new alk.layer.BaseMapLayer();
 
+		var radar = new alk.layer.WeatherRadarLayer({
+		  opacity: 0.75
+		});
 
-      // this function resolves the metadata promise,
-      // extracts the most recent publish time for radar data,
-      // and adds the radar layer to the map
-      const addRadarLayer = () => {
-        timeSlices
-          .then((res) => res.json())
-          .then((res) => {
-            const radarTimeSlices = res.seriesInfo.radar.series;
-            const latestTimeSlice = radarTimeSlices[0].ts;
-
-            // insert the latest time for radar into the source data URL
-            map.addSource("twcRadar", {
-              type: "raster",
-              tiles: [
-                "https://api.weather.com/v3/TileServer/tile/radar?ts=" +
-                  latestTimeSlice +
-                  "&xyz={x}:{y}:{z}&apiKey=" +
-                  twcApiKey,
-              ],
-              tileSize: 256,
-            });
-
-            // place the layer before the "aeroway-line" layer
-            map.addLayer(
-              {
-                id: "radar",
-                type: "raster",
-                source: "twcRadar",
-                paint: {
-                  "raster-opacity": 0.5,
-                },
-              },
-              "aeroway-line"
-            );
-          });
-      };
-
-
-
-      map.on("load", () => {
-        addRadarLayer();
-      });
-
+		var map = new ol.Map({
+		  target: 'map',
+		  layers: [base, radar],
+		  view: new ol.View({
+			center: ol.proj.transform([longitude, latitude], alk.val.SRS.EPSG4326, alk.val.SRS.EPSG3857),
+			zoom: 6
+		  })
+		});
 
 
 
