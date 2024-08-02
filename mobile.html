@@ -27,8 +27,8 @@
   <link rel="stylesheet" type="text/css" href="css/amazing.css">
   <link rel="stylesheet" type="text/css" href="css/updated.css">
 
-  <link rel="stylesheet" type="text/css" href="css/twcradar2.css"> 
-
+  <link rel="stylesheet" type="text/css" href="css/twcradar2.css">
+ 
   <script src="js/MainTWCX.js"></script>
   <script src="js/Mobile.js"></script>
   <script src="js/Config.js"></script>
@@ -41,6 +41,7 @@
 	
 </head>
 
+
 <script>
 
 function radarfull() {
@@ -48,12 +49,13 @@ function radarfull() {
   localStorage.setItem('loop', 'y');
   CONFIG.loop = true;
   
-  window.parent.location.href= 'https://K-A-0-S.github.io/georadar3.html';
+  window.parent.location.href= 'https://K-A-0-S.github.io/geomapbox/MobileMapBox.html';
 
 }
-	
 
 </script>
+
+
 
 <script>
 function nws() {
@@ -63,8 +65,10 @@ function nws() {
   location.href = "https://K-A-0-S.github.io/georadar3.html";
 }
 
-
 </script>
+
+
+
 
 <script>
 function intellistar() {
@@ -252,11 +256,9 @@ function intellistar() {
           <div style="display: inline-block">Regional Radar</div>
         </div>
         <div class="page-content-container">
-          <div id="radar-container" class="radar-container" style="position: absolute;"> 
-
-  <input type="image" value="Local Radar" style="height:33px;width:165px;" src="https://K-A-0-S.github.io/assets/logos/LocalRadar.png" class="button2" onclick="radarfull();" />
-		  
-		  
+          <div id="radar-container" class="radar-container" style="position: absolute;">
+  <input type="image" value="Local Radar" style="height:50px;width:50px;" src="https://K-A-0-S.github.io/assets/logos/LocalRadar.png" class="button2" onclick="radarfull();" />  
+     
           </div>
         </div>
       </div>
