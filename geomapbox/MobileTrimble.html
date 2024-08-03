@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <link rel="shortcut icon" type="image/png" href="assets/logos/favicon.png"/>
+
+  <link rel="stylesheet" type="text/css" href="css/settingsX.css">
+  <link rel="stylesheet" type="text/css" href="css/textX.css">
+
+ <link rel="stylesheet" type="text/css" href="css/mobilefullscrn.css">
+
+  <script src="js/ConfigX.js"></script>
+  <script src="js/MainScriptX.js"></script>
+  <script src="js/RadarX.js"></script>
+  <script src="js/ConditionsX.js"></script>
+
+  <meta charset="UTF-8">
+
+
+        <link rel="stylesheet" href="https://maps-sdk.trimblemaps.com/v3/trimblemaps-3.17.0.css" />
+        <script src="https://maps-sdk.trimblemaps.com/v3/trimblemaps-3.17.0.js"></script>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>IntelliSTAR Emulator</title>
+
+
+        <style>
+            body { margin: 0; padding: 0; }
+
+            #map {
+                position: absolute;
+                top: 0;
+                bottom: 0;
+                width: 100%;
+            }
+
+        </style>
+
+</head>
+	
+<body bgcolor="black">
+
+
+    <div id="map"> 
+
+
+  <input type="button" value="IntelliSTAR" class="button0" onclick="location.href='https://localhost:3001/mobile.html';" />
+
+
+    </div>
+ 
+
+  <div id="render-frame">
+    <div id="background-image" class="below-screen">  
+    </div>
+      <div id="infobar-container">
+      <div  class="infobar-item-container">
+        <div id="infobar-time-text"  ></div>
+      </div>
+    </div>
+      <div id="timeline">
+    </div>
+    <!-- Alert message -->
+    <div  class="regular-text"></div>
+  </div>
+
+  <!-- Settings Prompt -->
+  <div id="settings-container" style="display: none;">
+    <div id="settings-prompt">
+      <table style="width:350px">
+        <tbody>
+        
+          <!-- Locations won't be added programatically -->
+          <tr>
+            <td style="text-align: left;">
+              <input type="radio" id="airport-code-button" name='location-type' checked="false"/>
+              <label for="airport-code-button" class="strong-text settings-item settings-text settings-padded">Airport</label>
+            </td>
+            <td colspan="2">
+              <input type="text" id="airport-code-text" style="font-size: 20px; width:180px" 
+              placeholder="BWI or KBWI" class="settings-item settings-text settings-input"/>
+            </td>
+          </tr>
+
+          <tr>
+            <td style="text-align: left;">
+              <input type="radio" id="zip-code-button" name='location-type' checked="true"/>
+              <label for="zip-code-button" class="strong-text settings-item settings-text settings-padded">Postal</label>
+            </td>
+            <td>
+              <input type="text" id="zip-code-text" style="font-size: 20px; width:100px" 
+              placeholder="00000" class="settings-item settings-text settings-input"/>
+            </td>
+            <td>
+              <input type="text" id="country-code-text" style="font-size: 20px; width:50px;" 
+              placeholder="US" value="US" maxlength="2" class="settings-item settings-text settings-input"/>
+            </td>
+          </tr>
+
+        </tbody>
+      </table>
+      <div id="advanced-settings-options" class="settings-container hidden"></div>
+ 
+    </div>
+  </div>
+
+
+</body>
+
+
+</html>
