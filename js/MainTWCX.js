@@ -5,7 +5,7 @@ const SINGLE = [{name: "Alert", subpages: [{name: "single-alert-page", duration:
 const MULTIPLE = [{name: "Alerts", subpages: [{name: "multiple-alerts-page", duration: 7000}]},{name: "Now", subpages: [{name: "current-page", duration: 8000}, {name: "radar-page", duration: 12000}, {name: "zoomed-radar-page", duration: 11000}]},{name: "Tonight", subpages: [{name: "tonight-page", duration: 8000}]},{name: "Beyond", subpages: [{name: "tomorrow-page", duration: 8000}, {name: "7day-page", duration: 10000}]},]
 const WEEKDAY = ["SUN",  "MON", "TUES", "WED", "THU", "FRI", "SAT"];
 
-const jingle = new Audio("assets/music/jingle.wav")
+const jingle = new Audio("assets/music/jingle.mp3")
 
 const crawlSpeedCasual = 8; // A normal reading pace, in characters per second
 const crawlSpeedFast = 17; // A fast reading pace, in characters per second
@@ -56,7 +56,7 @@ function toggleAdvancedSettings(){
 
 function preLoadMusic(){
   var index = Math.floor(Math.random() * 12) + 1;
-  music = new Audio("assets/music/" + index + ".wav");
+  music = new Audio("assets/music/" + index + ".mp3");
 }
 
 /* Set the timeline page order depending on time of day and if
@@ -96,7 +96,7 @@ function setInformation(){
   setCurrentConditions();
   setTimelineEvents();
   hideSettings();
-  setTimeout(startAnimation, 4000);
+  setTimeout(startAnimation, 5000);
 }
 
 function setMainBackground(){
@@ -105,7 +105,7 @@ function setMainBackground(){
 
 function checkStormMusic(){
   if(currentCondition.toLowerCase().includes("storm")){
-    music= new Audio("assets/music/storm.wav");
+    music= new Audio("assets/music/storm.mp3");
   }
 }
 
