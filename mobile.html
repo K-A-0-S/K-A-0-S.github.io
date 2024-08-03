@@ -41,6 +41,20 @@
 	
 </head>
 
+<script>
+
+function alertd() {
+
+  localStorage.setItem('loop', 'y');
+  CONFIG.loop = true;
+  
+  window.parent.location.href= 'https://K-A-0-S.github.io/geomapbox/MobileTrimble.html';
+
+}
+
+</script>
+
+	
 
 <script>
 
@@ -269,8 +283,11 @@ function intellistar() {
           <div style="display: inline-block">Local Radar</div>
         </div>
         <div class="page-content-container">
-          <div id="zoomed-radar-container" class="radar-container" style="position: absolute;"></div>
-        </div>
+	  <div id="zoomed-radar-container" class="radar-container" style="position: absolute;"></div>
+
+	  <input type="image" value="Alerts Radar" style="height:50px;width:50px;" src="https://K-A-0-S.github.io/assets/logos/AlertsRadar.png" class="button2" onclick="alerts();" />  	
+	
+	</div>
       </div>
 
       <!-- Today Page -->
