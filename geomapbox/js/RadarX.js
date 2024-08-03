@@ -262,7 +262,7 @@ function fetchRadarImages(){
                 container: 'map', // container id
                 style: TrimbleMaps.Common.Style.TRANSPORTATION, // hosted style id
                 center: [longitude, latitude], // starting position
-                zoom: 3 // starting zoom
+                zoom: 6 // starting zoom
             });
             const ctrlClick = new TrimbleMaps.WeatherAlertClickControl();
             map.addControl(ctrlClick);
