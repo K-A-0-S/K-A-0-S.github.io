@@ -267,8 +267,8 @@ function fetchRadarImages(){
             const ctrlClick = new TrimbleMaps.WeatherAlertClickControl();
             map.addControl(ctrlClick);
 
-            //const ctrlFilter = new TrimbleMaps.WeatherAlertFilterControl();
-            //map.addControl(ctrlFilter, 'top-left');
+            const ctrlFilter = new TrimbleMaps.WeatherAlertFilterControl();
+            map.addControl(ctrlFilter, 'top-right');
             map.on('load', function() {
                 map.setWeatherAlertVisibility(true);
 		map.setWeatherRadarVisibility(true);
