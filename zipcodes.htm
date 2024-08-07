@@ -5,7 +5,10 @@
         <title>
         </title>
         <meta content="initial-scale=1,maximum-scale=1,user-scalable=no" name="viewport">
-        <script src="index2_files/mapbox-gl.js">
+<script src="https://api.mapbox.com/mapbox-gl-js/v3.5.1/mapbox-gl.js"></script>
+<link href="https://api.mapbox.com/mapbox-gl-js/v3.5.1/mapbox-gl.css" rel="stylesheet" />
+ <link rel="stylesheet" type="text/css" href="geomapbox/css/mobilefullscrn.css">
+
         </script>
     </head>
 <body>
@@ -236,11 +239,21 @@ margin-left: 170px;
                 <label>
                     <input name="button-group" class="layer_class" type="radio" value="Zip" onclick="updateLayer(this.value)">
                         <span class="btn">Zip Codes</span>
+
                     
                 </label>
             </div>
         </div>
     </nav>
+
+
+<input type="button" value="IntelliSTAR" class="button0" onclick="location.href='https://K-A-0-S.github.io/mobile.html';" />
+
+
+
+
+
+
     <div id="map" class="mapboxgl-map">
     <div class="mapboxgl-canary" style="visibility: hidden;"></div><div class="mapboxgl-canvas-container mapboxgl-interactive mapboxgl-touch-drag-pan mapboxgl-touch-zoom-rotate"><canvas class="mapboxgl-canvas" style="position: absolute; width: 1366px; height: 765px;" tabindex="0" aria-label="Map" width="1366" height="765"></canvas></div><div class="mapboxgl-control-container"><div class="mapboxgl-ctrl-top-left"></div><div class="mapboxgl-ctrl-top-right"></div><div class="mapboxgl-ctrl-bottom-left"><div class="mapboxgl-ctrl" style="display: block;"><a class="mapboxgl-ctrl-logo" target="_blank" rel="noopener" href="https://www.mapbox.com/" aria-label="Mapbox logo"></a></div></div><div class="mapboxgl-ctrl-bottom-right"><div class="mapboxgl-ctrl mapboxgl-ctrl-attrib"><div class="mapboxgl-ctrl-attrib-inner"><a href="https://www.mapbox.com/about/maps/" target="_blank" title="Mapbox" aria-label="Mapbox">© Mapbox</a> <a href="https://www.openstreetmap.org/about/" target="_blank" title="OpenStreetMap" aria-label="OpenStreetMap">© OpenStreetMap</a> <a class="mapbox-improve-map" href="https://apps.mapbox.com/feedback/?owner=mapbox&amp;id=streets-v11&amp;access_token=pk.eyJ1Ijoic2FoaWxrYXNoeWFwNjQiLCJhIjoiY2tkNDFxYmtoMXQxbjJybXlleGxhejE4MSJ9.LGSnbgHFFcuBE8wXHxIMiA" target="_blank" title="Improve this map" aria-label="Improve this map" rel="noopener">Improve this map</a></div></div></div></div></div>
     <div class="map-overlay" id="features">
