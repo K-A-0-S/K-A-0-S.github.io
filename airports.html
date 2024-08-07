@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Filter features within map view</title>
+<meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
+<script src="https://api.mapbox.com/mapbox-gl-js/v3.5.1/mapbox-gl.js"></script>
+<style>
+body { margin: 0; padding: 0; }
+#map { position: absolute; top: 0; bottom: 0; width: 100%; }
+</style>
+</head>
+<body>
+<style>
+    #map {
+        position: absolute;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        width: 100%;
+    }
+
+</style>
+
+<div id="map"></div>
+
+<div class="map-overlay">
+    <fieldset>
+        <input id="feature-filter" type="text" placeholder="Filter results by name">
+    </fieldset>
+    <div id="feature-listing" class="listing"></div>
+</div>
+
+<script>
+
+
+
+const frameCount = 10; // total intervals
+const startMinutes = -180; // start time offset relative to now, where negative means past
+const endMinutes = 0;
+
+const MAPBOX_TOKEN = 'pk.eyJ1IjoiYmxhcmsiLCJhIjoiY2plaGZmaGR1MGZ3cTJ3bzZ6OHp5OGZzYyJ9.5dVrsWJk208YPShD-0HLsQ';
+const AERIS_ID = 'wgE96YE3scTQLKjnqiMsv';
+const AERIS_KEY = 'SVG2gQFV8y9DjKR0BRY9wPoSLvrMrIqF9Lq2IYaY';
+const NUM_COLORS = '256'; // set to empty string for true color png
+const TILE_SIZE = 256;
+
+// layer to include on the map
+// uncomment more layers or add more!
+const layers = [
+ 	//'land-terrain',
+    'alerts:50',
+    //'satellite',
+    'radar:75:blur(0)',
+    //'stormcells',
+	//'radar-global',
+	//'satellite-infrared-color',
+	//'stormreports',
+	//'lightning-strike-density',
+	//'lightning-strikes-5m-icons',
+	//'lightning-flash-5m-icons',
+	//'temperatures-text',
+	//'dew-points-text',
+	//'fires-obs-points',
+	//'surface-analysis-pressure-text',
+	//'surface-analysis-fronts',
+	//'fradar'
+
+];
+
+
+function getTilePath(server, interval) {
+	return `https://maps${server}.aerisapi.com/${AERIS_ID}_${AERIS_KEY}/${layers.join(',')}/{z}/{x}/{y}/${interval}min.png${NUM_COLORS}`;
+}
+
+
+
+
+// Create the Mapbox map instance
+mapboxgl.accessToken = 'pk.eyJ1IjoiYmxhcmsiLCJhIjoiY2plaGZmaGR1MGZ3cTJ3bzZ6OHp5OGZzYyJ9.5dVrsWJk208YPShD-0HLsQ';
+const map = new mapboxgl.Map({
+	container: 'map',
+	style: 'mapbox://styles/mapbox/streets-v11',
+	center: [-78.5, 38],
+	zoom: 6,
+	projection: 'mercator'
+});
+
+
+    // Holds visible airport features for filtering
+    let airports = [];
+
+    // Create a popup, but don't add it to the map yet.
+    const popup = new mapboxgl.Popup({
+        closeButton: false
+    });
+
+    const filterEl = document.getElementById('feature-filter');
+    const listingEl = document.getElementById('feature-listing');
+
+    function renderListings(features) {
+        const empty = document.createElement('p');
+        // Clear any existing listings
+        listingEl.innerHTML = '';
+        if (features.length) {
+            for (const feature of features) {
+                const itemLink = document.createElement('a');
+                const label = `${feature.properties.name} (${feature.properties.abbrev})`;
+                itemLink.href = feature.properties.wikipedia;
+                itemLink.target = '_blank';
+                itemLink.textContent = label;
+                itemLink.addEventListener('mouseover', () => {
+                    // Highlight corresponding feature on the map
+                    popup
+                        .setLngLat(feature.geometry.coordinates)
+                        .setText(label)
+                        .addTo(map);
+                });
+                listingEl.appendChild(itemLink);
+            }
+
+            // Show the filter input
+            filterEl.parentNode.style.display = 'block';
+        } else if (features.length === 0 && filterEl.value !== '') {
+            empty.textContent = 'No results found';
+            listingEl.appendChild(empty);
+        } else {
+            empty.textContent = 'Drag the map to populate results';
+            listingEl.appendChild(empty);
+
+            // Hide the filter input
+            filterEl.parentNode.style.display = 'none';
+
+            // remove features filter
+            map.setFilter('airport', ['has', 'abbrev']);
+        }
+    }
+
+    function normalize(string) {
+        return string.trim().toLowerCase();
+    }
+
+    // Because features come from tiled vector data,
+    // feature geometries may be split
+    // or duplicated across tile boundaries.
+    // As a result, features may appear
+    // multiple times in query results.
+    function getUniqueFeatures(features, comparatorProperty) {
+        const uniqueIds = new Set();
+        const uniqueFeatures = [];
+        for (const feature of features) {
+            const id = feature.properties[comparatorProperty];
+            if (!uniqueIds.has(id)) {
+                uniqueIds.add(id);
+                uniqueFeatures.push(feature);
+            }
+        }
+        return uniqueFeatures;
+    }
+
+    map.on('load', () => {
+        map.addSource('airports', {
+            'type': 'vector',
+            'url': 'mapbox://mapbox.04w69w5j'
+        });
+        map.addLayer({
+            'id': 'airport',
+            'source': 'airports',
+            'source-layer': 'ne_10m_airports',
+            'type': 'circle',
+            'paint': {
+                'circle-color': '#4264fb',
+                'circle-radius': 4,
+                'circle-stroke-width': 2,
+                'circle-stroke-color': '#ffffff'
+            }
+        });
+
+        map.on('movestart', () => {
+            // reset features filter as the map starts moving
+            map.setFilter('airport', ['has', 'abbrev']);
+        });
+
+        map.on('moveend', () => {
+            const features = map.queryRenderedFeatures({ layers: ['airport'] });
+
+            if (features) {
+                const uniqueFeatures = getUniqueFeatures(features, 'iata_code');
+                // Populate features for the listing overlay.
+                renderListings(uniqueFeatures);
+
+                // Clear the input container
+                filterEl.value = '';
+
+                // Store the current features in sn `airports` variable to
+                // later use for filtering on `keyup`.
+                airports = uniqueFeatures;
+            }
+        });
+
+        map.on('mousemove', 'airport', (e) => {
+            // Change the cursor style as a UI indicator.
+            map.getCanvas().style.cursor = 'pointer';
+
+            // Populate the popup and set its coordinates based on the feature.
+            const feature = e.features[0];
+            popup
+                .setLngLat(feature.geometry.coordinates)
+                .setText(
+                    `${feature.properties.name} (${feature.properties.abbrev})`
+                )
+                .addTo(map);
+        });
+
+        map.on('mouseleave', 'airport', () => {
+            map.getCanvas().style.cursor = '';
+            popup.remove();
+        });
+
+        filterEl.addEventListener('keyup', (e) => {
+            const value = normalize(e.target.value);
+
+            // Filter visible features that match the input value.
+            const filtered = [];
+            for (const feature of airports) {
+                const name = normalize(feature.properties.name);
+                const code = normalize(feature.properties.abbrev);
+                if (name.includes(value) || code.includes(value)) {
+                    filtered.push(feature);
+                }
+            }
+
+            // Populate the sidebar with filtered results
+            renderListings(filtered);
+
+            // Set the filter to populate features into the layer.
+            if (filtered.length) {
+                map.setFilter('airport', [
+                    'match',
+                    ['get', 'abbrev'],
+                    filtered.map((feature) => {
+                        return feature.properties.abbrev;
+                    }),
+                    true,
+                    false
+                ]);
+            }
+        });
+
+        // Call this function on initialization
+        // passing an empty array to render an empty state
+        renderListings([]);
+    });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function addRasterLayer(map, interval, opacity = 0) {
+	const id = `amp-${layers.join('::')}-${interval}`;
+	map.addSource(id, {
+		type: 'raster',
+		tiles: [1, 2, 3, 4].map((s) => getTilePath(s, interval)),
+		tileSize: TILE_SIZE,
+		attribution: '<a href="https://www.aerisweather.com/">Xweather</a>'
+	});
+	map.addLayer({
+		id, 
+		type: 'raster',
+		source: id,
+		minzoom: 0,
+		maxzoom: 22,
+		paint: {
+			'raster-opacity': opacity,
+			'raster-opacity-transition': {
+				duration: 0,
+				delay: 0
+			}
+		}
+	});
+
+	return id;
+}
+
+function setRasterLayerOpacity(map, id, opacity) {
+	map.setPaintProperty(id, 'raster-opacity', opacity);
+}
+
+map.on('load', () => {
+	const interval = (endMinutes - startMinutes) / frameCount;
+	// set up the animation frames and layers
+	const frames = [];
+	for (let i = 0; i < frameCount; i += 1) {
+		const opacity = (i === 0) ? 1 : 0;
+		const timeOffset = startMinutes + interval * i;
+		const id = addRasterLayer(map, timeOffset, opacity);
+		frames.push(id);
+	}
+
+
+
+	// wait time determines how long to wait and allow frames to load before
+	// beginning animation playback
+	const waitTime = 100;
+
+	// step time determines the time in milliseconds each frame holds before advancing
+	const stepTime = 400;
+
+	let currentOffset = 0;
+	let previousOffset = currentOffset;
+
+	setTimeout(() => {
+		setInterval(() => {
+			previousOffset = currentOffset;
+			currentOffset += 1;
+			if (currentOffset === frames.length - 1) {
+				currentOffset = 0;
+			}
+			setRasterLayerOpacity(map, frames[previousOffset], 0);
+			setRasterLayerOpacity(map, frames[currentOffset], 1);
+		}, stepTime);
+	}, waitTime);
+});
+
+map.setView(e.latlng, map.getZoom(), {
+  "animate": true,
+  "pan": {
+    "duration": 20
+  }
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</script>
+
+</body>
+</html>
