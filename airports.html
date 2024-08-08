@@ -212,7 +212,7 @@ const map = new mapboxgl.Map({
             }
         });
 
-        map.on('mousemove', 'airport', (e) => {
+        map.on('mousecenter', 'airport', (e) => {
             // Change the cursor style as a UI indicator.
             map.getCanvas().style.cursor = 'pointer';
 
