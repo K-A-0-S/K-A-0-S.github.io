@@ -215,9 +215,9 @@ body { margin: 0; padding: 0; }
             }
         });
 
-        map.on('mousedown', 'airport', (e) => {
+        map.on('click', 'airport', (e) => {
             // Change the cursor style as a UI indicator.
-            map.getCanvas().style.cursor = 'pointer';
+            
 
             // Populate the popup and set its coordinates based on the feature.
             const feature = e.features[0];
