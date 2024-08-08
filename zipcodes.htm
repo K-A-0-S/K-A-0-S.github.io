@@ -325,14 +325,6 @@ function getTilePath(server, interval) {
             center: [-96.5556199, 39.8097343],
 
 	
-    // disable map rotation using right click + drag
-    map.dragRotate.disable();
-
-    // disable map rotation using touch rotation gesture
-    map.touchZoomRotate.disableRotation();	
-	
-	
-	
 	
 	});
         var zips_tiles = {
@@ -652,7 +644,11 @@ map.setView(e.latlng, map.getZoom(), {
   }
 });
 
+    // disable map rotation using right click + drag
+    map.dragRotate.disable();
 
+    // disable map rotation using touch rotation gesture
+    map.touchZoomRotate.disableRotation();	
 
 
     </script>
