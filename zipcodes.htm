@@ -637,6 +637,20 @@ map.on('load', () => {
 	}, waitTime);
 });
 
+
+
+    // disable map rotation using right click + drag
+    map.dragRotate.disable();
+
+    // disable map rotation using touch rotation gesture
+    map.touchZoomRotate.disableRotation();	
+
+
+
+
+
+
+	    
 map.setView(e.latlng, map.getZoom(), {
   "animate": true,
   "pan": {
@@ -644,11 +658,6 @@ map.setView(e.latlng, map.getZoom(), {
   }
 });
 
-    // disable map rotation using right click + drag
-    map.dragRotate.disable();
-
-    // disable map rotation using touch rotation gesture
-    map.touchZoomRotate.disableRotation();	
 
 
     </script>
