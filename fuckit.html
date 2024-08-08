@@ -215,7 +215,7 @@ body { margin: 0; padding: 0; }
             }
         });
 
-        map.on('touchstart', 'airport', (e) => {
+        map.on('mousedown', 'airport', (e) => {
             // Change the cursor style as a UI indicator.
             map.getCanvas().style.cursor = 'pointer';
 
