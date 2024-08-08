@@ -444,6 +444,21 @@ function getTilePath(server, interval) {
                 'water' /// 'water'   helps the transparency
             );
 
+
+
+    // disable map rotation using right click + drag
+    map.dragRotate.disable();
+
+    // disable map rotation using touch rotation gesture
+    map.touchZoomRotate.disableRotation();	
+
+
+
+
+
+
+
+		
             map.on('mousemove', function (e) {
                 var features = map.queryRenderedFeatures(e.point, {
                     layers: label_layers
@@ -636,18 +651,6 @@ map.on('load', () => {
 		}, stepTime);
 	}, waitTime);
 });
-
-
-
-    // disable map rotation using right click + drag
-    map.dragRotate.disable();
-
-    // disable map rotation using touch rotation gesture
-    map.touchZoomRotate.disableRotation();	
-
-
-
-
 
 
 	    
