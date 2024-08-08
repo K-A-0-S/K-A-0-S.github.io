@@ -109,6 +109,15 @@ const map = new mapboxgl.Map({
 });
 
 
+    // disable map rotation using right click + drag
+    map.dragRotate.disable();
+
+    // disable map rotation using touch rotation gesture
+    map.touchZoomRotate.disableRotation();
+
+
+
+	
     // Holds visible airport features for filtering
     let airports = [];
 
