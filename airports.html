@@ -184,7 +184,7 @@ const map = new mapboxgl.Map({
             'type': 'circle',
             'paint': {
                 'circle-color': '#4264fb',
-                'circle-radius': 4,
+                'circle-radius': 8,
                 'circle-stroke-width': 2,
                 'circle-stroke-color': '#ffffff'
             }
@@ -212,9 +212,8 @@ const map = new mapboxgl.Map({
             }
         });
 
-        map.on('mousecenter', 'airport', (e) => {
+        map.on('click', 'airport', (e) => {
             // Change the cursor style as a UI indicator.
-            map.getCanvas().style.cursor = 'pointer';
 
             // Populate the popup and set its coordinates based on the feature.
             const feature = e.features[0];
