@@ -124,9 +124,9 @@ function radarfull() {
 <script>
 function nws() {
 
-  localStorage.setItem('loop', 'y');
-  CONFIG.loop = true;
-  location.href = "https://K-A-0-S.github.io/georadar3.html";
+  localStorage.setItem('loop', 'n');
+  CONFIG.loop = false;
+  location.href = "https:///k-a-0-s.github.io/fullscrn.html";
 }
 
 </script>
@@ -530,6 +530,8 @@ function intellistar() {
         <tbody>
         
           <!-- Locations won't be added programatically -->
+          <img src="\assets\logos\NWS.png" alt="NWS" width="350" height="38" onclick="nws();">
+
           <tr>
             <td style="text-align: left;">
               <input type="radio" id="airport-code-button" name='location-type' checked="false"/>
@@ -559,7 +561,7 @@ function intellistar() {
         </tbody>
       </table>
       <div id="advanced-settings-options" class="settings-container hidden"></div>
-       <a href="https://K-A-0-S.github.io/mobilefullscrn2.html" style="color: white; font-size: 15px; font-family: akkoThin;">NWS Fullscreen Radar</a>
+
       
     </div>
   </div>
