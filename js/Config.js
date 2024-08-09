@@ -120,7 +120,7 @@ window.CONFIG = {
     advancedButtonContainer.classList.add('settings-container')
     settingsPrompt.appendChild(advancedButtonContainer)
     let advancedButton = document.createElement('button')
-    advancedButton.innerHTML = "Show advanced options"
+    advancedButton.innerHTML = "IntelliStar Emulator"
     advancedButton.id = "advanced-options-text"
     advancedButton.setAttribute('onclick', 'toggleAdvancedSettings()')
     advancedButton.classList.add('regular-text', 'settings-input', 'button')
