@@ -97,11 +97,19 @@ function checkStormMusic(){
 function startAnimation(){
   setInitialPositionCurrentPage();
 
-  jingle.play();
-
+  //jingle.play();
+  setTimeout(startJingle, 500)
   setTimeout(startMusic, 6000)
   executeGreetingPage();
-}  
+}
+
+
+function startJingle(){
+  jingle.play();
+}
+
+
+  
 function startMusic(){
   music.play();
 }
